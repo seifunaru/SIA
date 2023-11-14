@@ -1,0 +1,25 @@
+{
+  "MAIN_SETTINGS": {
+    "BackgroundWindowColor": "Black",
+    "ForegroundWindowColor": "White"
+  },
+
+  "BUTTON_SETTINGS": {
+    "default_ButtonColor": "#f1f1f1",
+    "hovered_ButtonColor": "#ffffff",
+    "pressed_ButtonColor": "#f0f0f0",
+    "default_textButtonColor": "Black",
+    "hovered_textButtonColor": "Black",
+    "pressed_textButtonColor": "Black",
+    "default_textSize": 9,
+    "default_letterSpacing": 3,
+    "button_colorTransitionTimeMs": 1000,
+  },
+
+  "DIALOGUE_SETTINGS": {
+    "dialogueBoxOpacity": 50,
+    "dialogueBackgroundColor": "Black",
+    "dialogueBoxColor": "White",
+    "dialoguTextColor": "White"
+  }
+}
