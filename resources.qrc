@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/system/app_close.png</file>
+    </qresource>
+</RCC>
