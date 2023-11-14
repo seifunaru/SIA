@@ -30,13 +30,13 @@ Button {
 
         State {
             name: "image"
-            PropertyChanges { target: button_logo_container ; visible: true  }
+            PropertyChanges { target: buttonImage ; visible: true  }
             PropertyChanges { target: text_container        ; visible: false }
         },
 
         State {
             name: "text"
-            PropertyChanges { target: button_logo_container ; visible: false }
+            PropertyChanges { target: buttonImage ; visible: false }
             PropertyChanges { target: text_container        ; visible: true  }
         }
 
@@ -83,7 +83,7 @@ Button {
         state: "mouseOut"
 
 
-        // Color animations for mouse interactions
+        // Color animations for mouse interactions on Button Background
 
         ColorAnimation {
             id: hoverAnimation
@@ -113,6 +113,25 @@ Button {
         }
 
 
+        // Color animations for mouse interactions on Button image
+
+        ColorAnimation {
+            id: imageHoverAnimation
+            target: imageColor
+            property: "color"
+            to: hovered_textColor
+            duration: currentTheme.button_colorTransitionTimeMs
+        }
+
+        ColorAnimation {
+            id: imageExitAnimation
+            target: imageColor
+            property: "color"
+            to: default_textColor
+            duration: currentTheme.button_colorTransitionTimeMs
+        }
+
+
         // Text and Image definitions for both button states.
 
         Text {
@@ -126,12 +145,19 @@ Button {
         }
 
         Image {
-            id: button_logo_container
+            id: buttonImage
             width: imageSize
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             source: "../../../" + imageUrl
             fillMode: Image.PreserveAspectFit
+        }
+
+        ColorOverlay {
+            id: imageColor
+            anchors.fill: buttonImage
+            source: buttonImage
+            color: default_textColor
         }
 
 
@@ -150,10 +176,19 @@ Button {
 
     onHoveredChanged: {
         if (button.hovered) {
-                    hoverAnimation.start()
-                } else {
-                    exitAnimation.start()
-                }
+            hoverAnimation.start()
+
+            if (buttonImage.visible) {
+                imageHoverAnimation.start()
+            }
+
+        } else {
+            exitAnimation.start()
+
+            if (buttonImage.visible) {
+                imageExitAnimation.start()
+            }
+        }
     }
 
     onClicked: {
