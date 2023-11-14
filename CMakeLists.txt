@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.16)
 project(SIA VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AURORCC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
@@ -10,12 +13,16 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appSIA
     main.cpp
+    resources.qrc
 )
 
 qt_add_qml_module(appSIA
     URI SIA
     VERSION 1.0
-    QML_FILES Main.qml
+    QML_FILES
+        Main.qml
+        data/qml/themes/ThemeManager.qml
+        data/qml/appControls/Button_solidSwap.qml
 )
 
 set_target_properties(appSIA PROPERTIES
@@ -29,6 +36,7 @@ set_target_properties(appSIA PROPERTIES
 target_link_libraries(appSIA
     PRIVATE Qt6::Quick
 )
+
 
 install(TARGETS appSIA
     BUNDLE DESTINATION .
