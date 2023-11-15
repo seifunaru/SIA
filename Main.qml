@@ -7,41 +7,88 @@ import "./data/qml/themes"
 
 Window {
 
-    //## INTERNAL FUNCTIONS
+    // ------------------------------------------------------------------
+    // Private internal functions.
+    // ------------------------------------------------------------------
+
     QtObject {
         id: internal
 
-        property int windowStatus: 0
+        property int windowStatus: 0    // Tracks if app window is on fullscreen state (1) or not (0)
 
+        // This function shows or hides resize and drag areas.
+        function toggleResizeAreas(show) {
+
+            // Shows or hide the window drag/move area based on parameter 'show'.
+            windowDragArea.visible = show
+
+            // Shows or hide the window resize areas based on parameter 'show'.
+            resizeLeft.visible = show
+            resizeRight.visible = show
+            resizeBottom.visible = show
+            resizeTop.visible = show
+            resizeWindowBotLeft.visible = show
+            resizeWindowBotRight.visible = show
+            resizeWindowTopLeft.visible = show
+            resizeWindowTopRight.visible = show
+        }
+
+        // This function checks if app window is on fullscreen and sets windowed, and vice versa.
         function maximizeRestore() {
+
+            // If windowed mode, sets fullscreen.
             if (windowStatus == 0) {
                 windowStatus = 1
                 window.showMaximized()
                 appFullscreen.imageUrl = "./res/system/app_minimize.png"
                 appBackground.radius = 0
+
+                toggleResizeAreas(false)
+
+            // If fullscreen mode, sets windowed.
             } else {
                 windowStatus = 0
                 window.showNormal()
                 appFullscreen.imageUrl = "./res/system/app_maximize.png"
                 appBackground.radius = currentTheme.universalAppRadius
+
+                toggleResizeAreas(true)
             }
         }
     }
 
+
+
+    // ------------------------------------------------------------------
+    // Initial window settings setup.
+    // ------------------------------------------------------------------
+
+    // ThemeManager handles the application color scheme.
     ThemeManager{ id: currentTheme }
+
+    // All default values are set based on "safe" window size values.
+    // These values are not supposed to be tweaked.
 
     id: window
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("SIA")
 
     width : 950
     height: 550
     minimumWidth : 950
     minimumHeight: 550
 
-    color: "#00000000"
-    flags: Qt.FramelessWindowHint
+    color: "#00000000"  // Transparent because of rounded window borders.
+    flags: Qt.Window | Qt.FramelessWindowHint
 
+
+
+
+    // ------------------------------------------------------------------
+    // Main application container.
+    // ------------------------------------------------------------------
+
+    // This is the actual application background.
     Rectangle {
         id: appBackground
         color: currentTheme.backgroundWindowColor
@@ -62,6 +109,13 @@ Window {
             }
         }
 
+
+
+
+        // ------------------------------------------------------------------
+        // Top application tool bar.
+        // ------------------------------------------------------------------
+
         Rectangle {
             id: topToolBar
             height: 110
@@ -73,6 +127,28 @@ Window {
             anchors.leftMargin: 0
             anchors.topMargin: 0
 
+
+            // Event handler for window drag and move.
+            MouseArea {
+                id: windowDragArea
+                height: 30
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.rightMargin: 0
+                anchors.leftMargin: 0
+                anchors.topMargin: 0
+
+                DragHandler {
+                    onActiveChanged: if (active){
+                        window.startSystemMove()
+                    }
+                }
+
+            }
+
+
+            // Button to close the application.
             Button_solidSwap {
                 id: appExit
 
@@ -87,8 +163,10 @@ Window {
                 hovered_button_color: "#ff0030"
                 hovered_textColor: "White"
 
+                onClicked: window.close()
             }
 
+            // Button to toggle fullscreen for application window.
             Button_solidSwap {
                 id: appFullscreen
 
@@ -107,6 +185,7 @@ Window {
                 }
             }
 
+            // Button to hide the application window.
             Button_solidSwap {
                 id: appHide
 
@@ -119,8 +198,18 @@ Window {
                 anchors.rightMargin: 0
 
                 imageUrl: "./res/system/app_hide.png"
+
+                onClicked: window.showMinimized()
             }
         }
+
+
+
+
+        // ------------------------------------------------------------------
+        // Bottom application tool bar.
+        // ------------------------------------------------------------------
+
         Rectangle {
             id: botToolbar
             x: 0
@@ -133,6 +222,164 @@ Window {
             anchors.bottomMargin: 0
             anchors.rightMargin: 0
             anchors.leftMargin: 0
+        }
+
+
+
+
+        // ------------------------------------------------------------------
+        // Window resize mouse areas.
+        // ------------------------------------------------------------------
+
+        // These Mouse Areas handle Window Resize interactions.
+        // Anchors were set in a specific way so they do not conflict with each other.
+
+
+
+        // ********************************* Unidirectional Resize Areas:
+
+        // Resize area for left window side.
+        MouseArea {
+            id: resizeLeft
+            width: 10
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.topMargin: 25
+            anchors.bottomMargin: 25
+            anchors.leftMargin: 0
+            cursorShape: Qt.SizeHorCursor
+
+            onPressed: {
+                window.startSystemResize(Qt.LeftEdge)
+            }
+        }
+
+        // Resize area for right window side.
+        MouseArea {
+            id: resizeRight
+            width: 10
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.topMargin: 30
+            anchors.bottomMargin: 25
+            anchors.rightMargin: 0
+            cursorShape: Qt.SizeHorCursor
+
+            onPressed: {
+                window.startSystemResize(Qt.RightEdge)
+            }
+        }
+
+        // Resize area for top window side.
+        MouseArea {
+            id: resizeTop
+            height: 5
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            anchors.leftMargin: 25
+            cursorShape: Qt.SizeVerCursor
+            anchors.rightMargin: 10
+
+            onPressed: {
+                window.startSystemResize(Qt.TopEdge)
+            }
+        }
+
+        // Resize area for bottom window side.
+        MouseArea {
+            id: resizeBottom
+            height: 10
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 0
+            anchors.rightMargin: 25
+            anchors.leftMargin: 25
+            cursorShape: Qt.SizeVerCursor
+
+            onPressed: {
+                window.startSystemResize(Qt.BottomEdge)
+            }
+        }
+
+
+
+        // ********************************* Bidirectional Resize Areas:
+
+        // Resize area for bottom-right window corner.
+        MouseArea {
+            id: resizeWindowBotRight
+            x: -15
+            y: 500
+            width: 25
+            height: 25
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            cursorShape: Qt.SizeFDiagCursor
+
+            onPressed: {
+                window.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
+            }
+        }
+
+        // Resize area for bottom-left window corner.
+        MouseArea {
+            id: resizeWindowBotLeft
+            x: 1
+            y: 524
+            width: 25
+            height: 25
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            cursorShape: Qt.SizeBDiagCursor
+
+            onPressed: {
+                window.startSystemResize(Qt.LeftEdge | Qt.BottomEdge)
+            }
+        }
+
+        // Resize area for top-left window corner.
+        MouseArea {
+            id: resizeWindowTopLeft
+            x: 7
+            y: 0
+            width: 25
+            height: 25
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            anchors.leftMargin: 0
+            anchors.bottomMargin: 525
+            cursorShape: Qt.SizeFDiagCursor
+            anchors.rightMargin: 0
+
+            onPressed: {
+                window.startSystemResize(Qt.LeftEdge | Qt.TopEdge)
+            }
+        }
+
+        // Resize area for top-right window corner.
+        MouseArea {
+            id: resizeWindowTopRight
+            x: 925
+            width: 10
+            height: 10
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            cursorShape: Qt.SizeBDiagCursor
+            anchors.rightMargin: 0
+
+            onPressed: {
+                window.startSystemResize(Qt.RightEdge | Qt.TopEdge)
+            }
         }
     }
 
