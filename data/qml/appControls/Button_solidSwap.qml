@@ -79,10 +79,6 @@ Button {
         anchors.fill: parent
         opacity: 1
 
-        states: [ "mouseIn" , "mouseOut" ]
-        state: "mouseOut"
-
-
         // Color animations for mouse interactions on Button Background
 
         ColorAnimation {
