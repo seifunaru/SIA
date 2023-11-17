@@ -1,0 +1,18 @@
+{
+    "MOD_INFO":
+    {
+        "modNameShort": "Ascendio",
+        "modNameLong": "Ascendio FPS Hotfix and Engine Tweaks",
+        "modVersion": "3.0",
+        "modAuthor": "Seifu",
+        "modGame": "Hogwarts Legacy",
+        "modLogoImgUrl": "../res/modInfo",
+        "expectedModInstallDir": "AUTO",
+        "modInstallDir": ""
+    },
+
+    "MOD_STEP_1":
+    {
+        "stepOne_nextPageUrl": ""
+    }
+}
