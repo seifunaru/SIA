@@ -1,9 +1,11 @@
 import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
+import QtQuick.Controls 6.3
 
 import "./data/qml/appControls"
 import "./data/qml/themes"
+import "./data/qml/pageStyle"
 
 Window {
 
@@ -269,6 +271,36 @@ Window {
 
 
             // ------------------------------------------------------------------
+            // Mid/central application area container.
+            // ------------------------------------------------------------------
+
+            // This area is used to contain the video background.
+            // Qt Creator does not have support for Video playback, so
+            // a placeholder image is used instead on the development process.
+
+            Rectangle {
+                id: midAreaContainer
+                color: "Transparent"
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: topToolBar.bottom
+                anchors.bottom: botToolbar.top
+                anchors.rightMargin: 0
+                anchors.leftMargin: 0
+                anchors.bottomMargin: 0
+                anchors.topMargin: 0
+
+                Image {
+                    anchors.fill: parent
+                    source: "./res/placeholderImage.jpg"
+                    fillMode: Image.PreserveAspectCrop
+                }
+            }
+
+
+
+
+            // ------------------------------------------------------------------
             // Bottom application tool bar.
             // ------------------------------------------------------------------
 
@@ -284,6 +316,27 @@ Window {
                 anchors.bottomMargin: 0
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
+            }
+
+
+
+
+            // ------------------------------------------------------------------
+            // StackView / Application page container.
+            // ------------------------------------------------------------------
+
+            // All QML pages are loaded inside this Stack View.
+
+            StackView {
+                id: contentStack
+
+                anchors.top: topToolBar.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+
+                initialItem: "./data/qml/pageStyle/BasicIntroPage.qml"
+
             }
 
 
@@ -442,6 +495,8 @@ Window {
                     window.startSystemResize(Qt.RightEdge | Qt.TopEdge)
                 }
             }
+
+
         }
     }
 }
