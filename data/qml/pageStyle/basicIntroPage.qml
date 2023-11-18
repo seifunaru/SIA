@@ -5,6 +5,7 @@
 // uninstall the mod.
 
 import QtQuick 2.15
+import "../appControls"
 
 Item {
 
@@ -157,7 +158,19 @@ Item {
             anchors.leftMargin: 0
             anchors.bottomMargin: 0
 
+            Button_solidSwap {
+                id: buttonOp1
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
 
+                state: "toggleable"
+                isImageButton: false
+
+                onClicked: {
+                    buttonOp1.setClicked()
+                    console.log("CURRENT: " + buttonOp1.isClicked)
+                }
+            }
 
         }
 
