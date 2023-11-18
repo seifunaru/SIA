@@ -18,7 +18,7 @@ Item {
     property color foregroundWindowColor: "White"
 
     property color default_ButtonColor: "#f1f1f1"
-    property color hovered_ButtonColor: "#ffffff"
+    property color hovered_ButtonColor: "#f9f9f9"
     property color pressed_ButtonColor: "#24afff"
     property color default_textButtonColor: "Black"
     property color hovered_textButtonColor: "Black"
