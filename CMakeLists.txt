@@ -23,6 +23,7 @@ qt_add_qml_module(appSIA
         Main.qml
         data/qml/themes/ThemeManager.qml
         data/qml/appControls/Button_solidSwap.qml
+        data/qml/appControls/ParallaxImage.qml
         data/qml/pageStyle/BasicIntroPage.qml
 )
 
