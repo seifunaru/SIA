@@ -13,11 +13,17 @@ Window {
     // Private internal functions.
     // ------------------------------------------------------------------
 
+
+
     QtObject {
         id: internal
 
         property int windowStatus: 0        // Tracks if app window is on fullscreen state (1) or not (0)
         property int defaultAppMargin: 20
+        property int currentMouseX: 0
+        property int currentMouseY: 0
+
+        property int mouseUpdate: 10
 
         // This function shows or hides resize and drag areas.
         function toggleResizeAreas(show) {
@@ -170,6 +176,68 @@ Window {
 
 
 
+
+            // ------------------------------------------------------------------
+            // Mid/central application area container.
+            // ------------------------------------------------------------------
+
+            // This area is used to contain the video background.
+            // Qt Creator does not have support for Video playback, so
+            // a placeholder image is used instead on the development process.
+
+            Rectangle {
+                id: midAreaContainer
+                color: "Transparent"
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: topToolBar.bottom
+                anchors.bottom: botToolbar.top
+
+                ParallaxImage {
+                    id: parallaxBck
+
+                    NumberAnimation on deltaX {
+                        id: animationSmootherX
+
+                        from: parallaxBck.deltaX
+                        to: internal.currentMouseX
+                        duration: internal.mouseUpdate
+                    }
+
+                    NumberAnimation on deltaY {
+                        id: animationSmootherY
+
+                        from: parallaxBck.deltaY
+                        to: internal.currentMouseY
+                        duration: internal.mouseUpdate
+                    }
+                }
+            }
+
+
+
+
+            // ------------------------------------------------------------------
+            // Bottom application tool bar.
+            // ------------------------------------------------------------------
+
+            Rectangle {
+                id: botToolbar
+                x: 0
+                y: 440
+                height: 110
+                color: currentTheme.foregroundWindowColor
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0
+                anchors.rightMargin: 0
+                anchors.leftMargin: 0
+            }
+
+
+
+
             // ------------------------------------------------------------------
             // Top application tool bar.
             // ------------------------------------------------------------------
@@ -271,57 +339,6 @@ Window {
 
 
             // ------------------------------------------------------------------
-            // Mid/central application area container.
-            // ------------------------------------------------------------------
-
-            // This area is used to contain the video background.
-            // Qt Creator does not have support for Video playback, so
-            // a placeholder image is used instead on the development process.
-
-            Rectangle {
-                id: midAreaContainer
-                color: "Transparent"
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: topToolBar.bottom
-                anchors.bottom: botToolbar.top
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-                anchors.bottomMargin: 0
-                anchors.topMargin: 0
-
-                Image {
-                    anchors.fill: parent
-                    source: "./res/placeholderImage.jpg"
-                    fillMode: Image.PreserveAspectCrop
-                }
-            }
-
-
-
-
-            // ------------------------------------------------------------------
-            // Bottom application tool bar.
-            // ------------------------------------------------------------------
-
-            Rectangle {
-                id: botToolbar
-                x: 0
-                y: 440
-                height: 110
-                color: currentTheme.foregroundWindowColor
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 0
-                anchors.rightMargin: 0
-                anchors.leftMargin: 0
-            }
-
-
-
-
-            // ------------------------------------------------------------------
             // StackView / Application page container.
             // ------------------------------------------------------------------
 
@@ -329,6 +346,46 @@ Window {
 
             StackView {
                 id: contentStack
+
+                MouseArea {
+                    id: mouseTracker
+
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    x: 0
+
+                    onPositionChanged: {
+                        internal.currentMouseX = Math.round(mouseX)
+                        internal.currentMouseY = Math.round(mouseY)
+                    }
+
+                    onClicked: {
+                        internal.currentMouseX = Math.round(mouseX)
+                        internal.currentMouseY = Math.round(mouseY)
+                    }
+                }
+
+                Timer {
+                    interval: internal.mouseUpdate
+
+                    running: true
+                    repeat: true
+
+                    onTriggered: {
+                        if (mouseTracker.x < 1) { mouseTracker.x = 1 } else { mouseTracker.x = 0 }
+                        animationSmootherX.start()
+                        animationSmootherY.start()
+                    }
+                }
+
+                Timer {
+                    id: resetTimer
+                    interval: internal.mouseUpdate
+                    onTriggered: {
+                        parallaxBck.deltaX = internal.currentMouseX
+                        parallaxBck.deltaY = internal.currentMouseY
+                    }
+                }
 
                 anchors.top: topToolBar.bottom
                 anchors.left: parent.left
@@ -495,8 +552,6 @@ Window {
                     window.startSystemResize(Qt.RightEdge | Qt.TopEdge)
                 }
             }
-
-
         }
     }
 }
