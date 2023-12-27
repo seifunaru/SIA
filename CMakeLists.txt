@@ -13,7 +13,7 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appSIA
     main.cpp
-    resources.qrc
+    data/stepmanager.cpp
 )
 
 qt_add_qml_module(appSIA
@@ -24,7 +24,9 @@ qt_add_qml_module(appSIA
         data/qml/themes/ThemeManager.qml
         data/qml/appControls/Button_solidSwap.qml
         data/qml/appControls/ParallaxImage.qml
+        data/qml/appControls/LodImage.qml
         data/qml/pageStyle/BasicIntroPage.qml
+        data/qml/pageStyle/Step_ToggleMaker.qml
 )
 
 set_target_properties(appSIA PROPERTIES
