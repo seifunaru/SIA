@@ -110,7 +110,17 @@ Item {
 
         // PRIVATE functions
 
-        // Manages which image to display.
+        function checkForWarnings() {
+            var regex = new RegExp("\\b" + buttonTrack.toString() + "\\b")
+            if (hasWarning.match(regex))
+            {
+                bck_warning.visible = true
+            } else {
+                bck_warning.visible = false
+            }
+        }
+
+        // Manages which image to display, and also triggers checkForWarnings.
         function reloadImgPrev()
         {
             switch (buttonTrack)
@@ -190,6 +200,10 @@ Item {
                 highRes.source = img_HQ_btn1_btn2_btn3_btn4
                 break;
             }
+
+            checkForWarnings()
+            console.log("CURRENT BUTTON TRACK: " + buttonTrack.toString())
+            console.log("CURRENT WARNING CONDITION: " + hasWarning)
         }
 
         // gets path to step data JSON.
@@ -225,7 +239,7 @@ Item {
                         btn4_comment= modData.STEP.button4_comment
 
                         hasWarning = modData.STEP.step_warning
-                        warningMessage = modData.STEP.warning_message
+                        warning_txt.text = modData.STEP.warning_message
 
 
                         // Image Paths
@@ -272,8 +286,8 @@ Item {
                         img_LQ_btn1_btn3_btn4 = modData.STEP.image_LQ_btn1_btn3_btn4
                         img_HQ_btn1_btn3_btn4 = modData.STEP.image_HQ_btn1_btn3_btn4
 
-                        img_LQ_btn1_btn2_btn4 = modData.STEP.image_LQ_btn1_btn3_btn4
-                        img_HQ_btn1_btn2_btn4 = modData.STEP.image_HQ_btn1_btn3_btn4
+                        img_LQ_btn1_btn2_btn4 = modData.STEP.image_LQ_btn1_btn2_btn4
+                        img_HQ_btn1_btn2_btn4 = modData.STEP.image_HQ_btn1_btn2_btn4
 
                         img_LQ_btn1_btn2_btn3_btn4 = modData.STEP.image_LQ_btn1_btn2_btn3_btn4
                         img_HQ_btn1_btn2_btn3_btn4 = modData.STEP.image_HQ_btn1_btn2_btn3_btn4
@@ -365,12 +379,53 @@ Item {
                 running: true
                 interval: 100
                 onTriggered: {
-                    if (highRes.status == 0) {
-                        imgLODtimer.repeat
+                    if (highRes.status !== 1) {
+                        checkImgLod.start()
                         highRes.visible = false
-                    }
-                    if (highRes.status == 1) {
+                    }else {
                         highRes.visible = true
+                    }
+                }
+            }
+
+            Rectangle {
+                id: bck_warning
+                y: 214
+                width: 300
+                height: 30 + warning_txt.height
+                color: "#99b30000"
+                radius: 10
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 8
+                anchors.bottomMargin: 8
+
+                visible:false
+
+                Rectangle {
+                    id: brd_warning
+                    color: "#00ffffff"
+                    radius: 10
+                    border.color: "#ffffff"
+                    border.width: 5
+                    anchors.fill: parent
+                    anchors.margins: 5
+
+                    Text {
+                        id: warning_txt
+                        y: 10
+                        width: 270
+                        color: "#ffffff"
+                        text: qsTr(" dummie")
+                        anchors.left: parent.left
+                        anchors.bottom: parent.bottom
+                        font.pixelSize: 12
+                        wrapMode: Text.Wrap
+                        fontSizeMode: Text.VerticalFit
+                        anchors.bottomMargin: 10
+                        font.family: "Arial"
+                        anchors.margins: 10
+                        font.letterSpacing: 2
                     }
                 }
             }
