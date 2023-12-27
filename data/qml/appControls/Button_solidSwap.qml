@@ -38,6 +38,7 @@ Button {
     property color default_textColor: currentTheme.default_textButtonColor
     property color hovered_textColor: currentTheme.hovered_textButtonColor
     property color pressed_textColor: currentTheme.pressed_textButtonColor
+    property string btnText: "Dummie"
 
     // This setting turns the button into a toggleable or a click button.
     property bool isClicked: false // when  toggleable, tracks if it's clicked or not.
@@ -47,6 +48,7 @@ Button {
         if (isClicked) { isClicked = false; default_button_color = currentTheme.default_ButtonColor}
         else { isClicked = true; default_button_color = currentTheme.foregroundWindowColor}
     }
+
 
 
 
@@ -69,28 +71,28 @@ Button {
 
 
 
+    states: [
+
+            State {
+                name: "default"
+                PropertyChanges { target: button_background; anchors.margins: 0 }
+            },
+
+            State {
+                name: "toggleable"
+                PropertyChanges { target: buttonBorder; color: currentTheme.foregroundWindowColor }
+                PropertyChanges { target: button_background; anchors.margins: 2 }
+            }
+
+        ]
+        state: "default"
+
+
+
+
     // Placeholder values, expected to be tweaken once constructed.
     implicitWidth: 200
     implicitHeight: 40
-
-
-
-
-    states: [
-
-        State {
-            name: "default"
-            PropertyChanges { target: button_background; anchors.margins: 0 }
-        },
-
-        State {
-            name: "toggleable"
-            PropertyChanges { target: buttonBorder; color: currentTheme.foregroundWindowColor }
-            PropertyChanges { target: button_background; anchors.margins: 2 }
-        }
-
-    ]
-    state: "default"
 
 
 
@@ -191,7 +193,7 @@ Button {
 
             Text {
                 id: text_container
-                text: "dummie"
+                text: btnText
                 anchors.verticalCenter: parent.verticalCenter
                 font.letterSpacing: 3
                 font.pointSize: 9
