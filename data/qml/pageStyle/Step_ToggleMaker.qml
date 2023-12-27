@@ -18,7 +18,6 @@ Item {
     Component.onCompleted:
     {
         internal.loadModData()
-        internal.reloadImgPrev()
     }
 
     // PRIVATE
@@ -30,6 +29,7 @@ Item {
 
         property int buttonCount: 0
         property int buttonSizeX: 0
+        property int buttonTrack: 0000
 
         property string hasWarning: ""
         property string warningMessage: ""
@@ -94,6 +94,8 @@ Item {
 
 
 
+        property url img_LQ_btn1_btn2_btn3: ""
+        property url img_HQ_btn1_btn2_btn3: ""
         property url img_LQ_btn1_btn3_btn4: ""
         property url img_HQ_btn1_btn3_btn4: ""
 
@@ -108,10 +110,86 @@ Item {
 
         // PRIVATE functions
 
+        // Manages which image to display.
         function reloadImgPrev()
         {
-            previewImage.lqsource = img_LQ_vanilla
-            previewImage.hqsource = img_HQ_vanilla
+            switch (buttonTrack)
+            {
+            case 0000:
+                lowRes.source  = "../../../" + img_LQ_vanilla
+                highRes.source = img_HQ_vanilla
+                break;
+
+            case 1000:
+                lowRes.source  = "../../../" + img_LQ_btn1
+                highRes.source = img_HQ_btn1
+                break;
+
+            case 0100:
+                lowRes.source  = "../../../" + img_LQ_btn2
+                highRes.source = img_HQ_btn2
+                break;
+
+            case 0010:
+                lowRes.source  = "../../../" + img_LQ_btn3
+                highRes.source = img_HQ_btn3
+                break;
+
+            case 0001:
+                lowRes.source  = "../../../" + img_LQ_btn4
+                highRes.source = img_HQ_btn4
+                break;
+
+            case 1100:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn2
+                highRes.source = img_HQ_btn1_btn2
+                break;
+
+            case 1010:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn3
+                highRes.source = img_HQ_btn1_btn3
+                break;
+
+            case 1001:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn4
+                highRes.source = img_HQ_btn1_btn4
+                break;
+
+            case 0110:
+                lowRes.source  = "../../../" + img_LQ_btn2_btn3
+                highRes.source = img_HQ_btn2_btn3
+                break;
+
+            case 0101:
+                lowRes.source  = "../../../" + img_LQ_btn2_btn4
+                highRes.source = img_HQ_btn2_btn4
+                break;
+
+            case 0011:
+                lowRes.source  = "../../../" + img_LQ_btn3_btn4
+                highRes.source = img_HQ_btn3_btn4
+                break;
+
+            case 1110:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn2_btn3
+                highRes.source = img_HQ_btn1_btn2_btn3
+                break;
+
+            case 1011:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn3_btn4
+                highRes.source = img_HQ_btn1_btn3_btn4
+                break;
+
+            case 1101:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn2_btn4
+                highRes.source = img_HQ_btn1_btn2_btn4
+                break;
+
+            case 1111:
+                lowRes.source  = "../../../" + img_LQ_btn1_btn2_btn3_btn4
+                highRes.source = img_HQ_btn1_btn2_btn3_btn4
+                break;
+            }
         }
 
         // gets path to step data JSON.
@@ -126,7 +204,6 @@ Item {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        console.log("JSON CONTENT: \n" + xhr.responseText)
                         var modData = JSON.parse(xhr.responseText);
 
                         // Step title and description
@@ -146,6 +223,9 @@ Item {
 
                         btn4_text = modData.STEP.button4_text
                         btn4_comment= modData.STEP.button4_comment
+
+                        hasWarning = modData.STEP.step_warning
+                        warningMessage = modData.STEP.warning_message
 
 
                         // Image Paths
@@ -184,6 +264,10 @@ Item {
 
                         img_LQ_btn3_btn4 = modData.STEP.image_LQ_btn3_btn4
                         img_HQ_btn3_btn4 = modData.STEP.image_HQ_btn3_btn4
+
+
+                        img_LQ_btn1_btn2_btn3 = modData.STEP.image_LQ_btn1_btn2_btn3
+                        img_HQ_btn1_btn2_btn3 = modData.STEP.image_HQ_btn1_btn2_btn3
 
                         img_LQ_btn1_btn3_btn4 = modData.STEP.image_LQ_btn1_btn3_btn4
                         img_HQ_btn1_btn3_btn4 = modData.STEP.image_HQ_btn1_btn3_btn4
@@ -227,15 +311,6 @@ Item {
         }
     }
 
-    Timer { // This timer gives time to the app to load the web viewer.
-        id: webTimer
-        interval: 7000
-        onTriggered: {
-            console.log("TIMER TRIGGER")
-            internal.lowResUpdate = false
-        }
-    }
-
 
 
 
@@ -271,8 +346,10 @@ Item {
                 id: lowRes
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-                source: "../../../" + internal.img_LQ_vanilla
-                onSourceChanged: imgLODtimer.restart()
+                source: "../../../" + "res/step/1/LQ_vanilla.webp"
+                onSourceChanged: {
+                    checkImgLod.start()
+                }
             }
 
             Image {
@@ -284,13 +361,17 @@ Item {
             }
 
             Timer {
-                id: imgLODtimer
+                id: checkImgLod
                 running: true
-                interval: 1500
+                interval: 100
                 onTriggered: {
-                    lowRes.visible = false
-                    highRes.visible = true
-                    console.log("IMG Updated")
+                    if (highRes.status == 0) {
+                        imgLODtimer.repeat
+                        highRes.visible = false
+                    }
+                    if (highRes.status == 1) {
+                        highRes.visible = true
+                    }
                 }
             }
 
@@ -375,10 +456,17 @@ Item {
 //                    }
 //                }
 
-
-
                 onClicked: {
                     setClicked()
+
+                    if( isClicked )
+                    {
+                        internal.buttonTrack += 1000
+                    } else {
+                        internal.buttonTrack -= 1000
+                    }
+
+                    internal.reloadImgPrev()
                 }
             }
 
@@ -395,6 +483,15 @@ Item {
 
                 onClicked: {
                     setClicked()
+
+                    if( isClicked )
+                    {
+                        internal.buttonTrack += 100
+                    } else {
+                        internal.buttonTrack -= 100
+                    }
+
+                    internal.reloadImgPrev()
                 }
             }
 
@@ -412,6 +509,15 @@ Item {
 
                 onClicked: {
                     setClicked()
+
+                    if( isClicked )
+                    {
+                        internal.buttonTrack += 10
+                    } else {
+                        internal.buttonTrack -= 10
+                    }
+
+                    internal.reloadImgPrev()
                 }
             }
 
@@ -428,6 +534,15 @@ Item {
 
                 onClicked: {
                     setClicked()
+
+                    if( isClicked )
+                    {
+                        internal.buttonTrack += 1
+                    } else {
+                        internal.buttonTrack -= 1
+                    }
+
+                    internal.reloadImgPrev()
                 }
             }
 
