@@ -1,0 +1,21 @@
+{
+    "MOD_INFO":
+    {
+        "modNameShort": "Ascendio",
+        "modNameLong": "Ascendio FPS Hotfix and Engine Tweaks",
+        "modVersion": "3.0",
+        "modAuthor": "Seifu",
+        "modGame": "Hogwarts Legacy",
+        "expectedModInstallDir": "AUTO",
+        "modInstallDir": ""
+    },
+
+    "MOD_MEDIA":
+    {
+        "modLogoImgUrl":   "../res/modInfo",
+        "modParallaxImg1": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr1.webp",
+        "modParallaxImg2": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr2.webp",
+        "modParallaxImg3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr3.webp",
+        "modParallaxImg4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr4.webp"
+    }
+}
