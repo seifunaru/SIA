@@ -46,10 +46,14 @@ Item {
 
     Timer { // This timer gives time to the app to load the web viewer.
         id: webTimer
-        interval: 7000
+        interval: 100
         onTriggered: {
-            console.log("TIMER TRIGGER")
-            internal.lowResVisible = false
+            if (image1_highResItem.status !==1 || image2_highResItem.status !==1 || image3_highResItem.status !==1 || image4_highResItem.status !==1)
+            {
+                webTimer.start()
+            } else {
+                internal.lowResVisible = false
+            }
         }
     }
 
