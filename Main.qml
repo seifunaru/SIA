@@ -554,4 +554,12 @@ Window {
             }
         }
     }
+
+    Connections {
+        target: stepManager
+
+        function onStackNextRequest() {
+            contentStack.push("data/qml/pageStyle/Step_ToggleMaker.qml")
+        }
+    }
 }
