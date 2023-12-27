@@ -163,17 +163,18 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                state: "toggleable"
                 isImageButton: false
 
                 onClicked: {
                     buttonOp1.setClicked()
-                    console.log("CURRENT: " + buttonOp1.isClicked)
+                    stepManager.doNextStep()
                 }
             }
 
         }
 
     }
+
+    Connections { target: stepManager }
 
 }

@@ -18,6 +18,30 @@ Item {
             console.log("FUNCTION TRIGGER")
             webTimer.start()
         }
+
+        function getModDataUrl() {
+            return "../../json/modData.json";
+        }
+
+        function loadModData() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var modData = JSON.parse(xhr.responseText);
+
+                        // Assigns parallax image URLs from modData json.
+                        image1HQ_url = modData.MOD_MEDIA.modParallaxImg1;
+                        image2HQ_url = modData.MOD_MEDIA.modParallaxImg2;
+                        image3HQ_url = modData.MOD_MEDIA.modParallaxImg3;
+                        image4HQ_url = modData.MOD_MEDIA.modParallaxImg4;
+                        // ** //
+                    }
+                }
+            };
+            xhr.open("GET", getModDataUrl());
+            xhr.send();
+        }
     }
 
     Timer { // This timer gives time to the app to load the web viewer.
@@ -41,10 +65,10 @@ Item {
     property url image4_url: "../../../res/parallaxIntro/parallaxLr4.webp"
 
     // path to high quality web depth images to be retrieved as background process.
-    property url image1HQ_url: "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr1.webp"
-    property url image2HQ_url: "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr2.webp"
-    property url image3HQ_url: "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr3.webp"
-    property url image4HQ_url: "https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr4.webp"
+    property url image1HQ_url: ""
+    property url image2HQ_url: ""
+    property url image3HQ_url: ""
+    property url image4HQ_url: ""
 
     // parallax effect properties
     property real amplitude: 0.02
@@ -65,7 +89,10 @@ Item {
 
 
     // On Component created, starts loading HQ web images
-    Component.onCompleted: internal.getHqImgOnWebInit()
+    Component.onCompleted: {
+        internal.getHqImgOnWebInit()
+        internal.loadModData()
+    }
 
 
 
