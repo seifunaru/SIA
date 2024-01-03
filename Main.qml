@@ -18,12 +18,15 @@ Window {
     QtObject {
         id: internal
 
-        property int windowStatus: 0        // Tracks if app window is on fullscreen state (1) or not (0)
+        property int windowStatus: 0            // Tracks if app window is on fullscreen state (1) or not (0)
         property int defaultAppMargin: 20
         property int currentMouseX: 0
         property int currentMouseY: 0
 
         property int mouseUpdate: 10
+
+        property int currentStep: 0             // Tracks te current application step to show. Managed by backend.
+        property string pageStyleToParse: ""    // Tracks which is the next expected page style template.
 
         // This function shows or hides resize and drag areas.
         function toggleResizeAreas(show) {
@@ -558,8 +561,44 @@ Window {
     Connections {
         target: stepManager
 
-        function onStackNextRequest() {
-            contentStack.push("data/qml/pageStyle/Step_ToggleMaker.qml")
+        function onStepUpdateRequest( backendStep ) {
+            console.log("STEP UPDATE REQUEST, Step Count = " + backendStep)
+            internal.currentStep = backendStep
+
+            function getModDataUrl()
+            {
+                return "data/json/step/" + backendStep.toString() + "/modStep.json";
+            }
+
+            console.log(getModDataUrl())
+
+            // gets which page style template should be used on next step from JSON.
+            // also pushes the content stack.
+            function loadModData() {
+                console.log("STARTED LOAD MOD DATA")
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    console.log("XHR STATE: "+ xhr.status)
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            var modData = JSON.parse(xhr.responseText);
+
+                            // Step title and description
+                            internal.pageStyleToParse = modData.STEP.pageStyle
+                            console.log("PAGE TO PARSE: " + internal.pageStyleToParse)
+                            // ** //
+
+                            backendStep = "data/qml/pageStyle/" + internal.pageStyleToParse
+                            contentStack.push(backendStep)
+                        }
+                    }
+                };
+                xhr.open("GET", getModDataUrl());
+                xhr.send();
+            }
+
+            loadModData()
+
         }
     }
 }
