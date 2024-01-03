@@ -31,12 +31,8 @@ void StepManager::setStep(QString currentStep)
 
 void StepManager::doNextStep()
 {
-    if (stepCount != 0) {
-
-    } else {
-        stepCount++;
-        emit stackNextRequest();
-    }
+    stepCount++;
+    emit stepUpdateRequest ( stepCount );
 }
 
 
@@ -57,6 +53,12 @@ void StepManager::doBackStep()
     qDebug() << "Selected options after removal:";
     for (const QString &currentOption : selectedOptions) {
         qDebug() << "[" + currentOption + "] , ";
+    }
+
+    if (stepCount > 0)
+    {
+        stepCount--;
+        emit stepUpdateRequest ( stepCount );
     }
 }
 

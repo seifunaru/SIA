@@ -12,7 +12,7 @@ public:
     int stepCount = 0;
 
 signals:
-    void stackNextRequest();
+    int stepUpdateRequest ( int stepCount );
 
 public slots:
     void setStep(QString currentStep);
