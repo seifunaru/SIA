@@ -102,6 +102,9 @@ Item {
         property url img_LQ_btn1_btn2_btn4: ""
         property url img_HQ_btn1_btn2_btn4: ""
 
+        property url img_LQ_btn2_btn3_btn4: ""
+        property url img_HQ_btn2_btn3_btn4: ""
+
         property url img_LQ_btn1_btn2_btn3_btn4: ""
         property url img_HQ_btn1_btn2_btn3_btn4: ""
 
@@ -128,6 +131,7 @@ Item {
             case 0000:
                 lowRes.source  = "../../../" + img_LQ_vanilla
                 highRes.source = img_HQ_vanilla
+                comment_txt.text = description
                 break;
 
             case 1000:
@@ -175,6 +179,11 @@ Item {
                 highRes.source = img_HQ_btn2_btn4
                 break;
 
+            case 0111:
+                lowRes.source  = "../../../" + img_LQ_btn2_btn3_btn4
+                highRes.source = img_HQ_btn2_btn3_btn4
+                break;
+
             case 0011:
                 lowRes.source  = "../../../" + img_LQ_btn3_btn4
                 highRes.source = img_HQ_btn3_btn4
@@ -204,6 +213,7 @@ Item {
             checkForWarnings()
             console.log("CURRENT BUTTON TRACK: " + buttonTrack.toString())
             console.log("CURRENT WARNING CONDITION: " + hasWarning)
+            if (buttonTrack === 0) { btn_next.visible = false } else { btn_next.visible = true }
         }
 
         // gets path to step data JSON.
@@ -221,8 +231,8 @@ Item {
                         var modData = JSON.parse(xhr.responseText);
 
                         // Step title and description
-                        title_text.text = modData.STEP.title
-                        comment_txt.text = modData.STEP.description
+                        internal.title = modData.STEP.title
+                        internal.description = modData.STEP.description
 
 
                         // Buttons title and description
@@ -288,6 +298,9 @@ Item {
 
                         img_LQ_btn1_btn2_btn4 = modData.STEP.image_LQ_btn1_btn2_btn4
                         img_HQ_btn1_btn2_btn4 = modData.STEP.image_HQ_btn1_btn2_btn4
+
+                        img_LQ_btn2_btn3_btn4 = modData.STEP.image_LQ_btn2_btn3_btn4
+                        img_HQ_btn2_btn3_btn4 = modData.STEP.image_LQ_btn2_btn3_btn4
 
                         img_LQ_btn1_btn2_btn3_btn4 = modData.STEP.image_LQ_btn1_btn2_btn3_btn4
                         img_HQ_btn1_btn2_btn3_btn4 = modData.STEP.image_HQ_btn1_btn2_btn3_btn4
@@ -456,7 +469,7 @@ Item {
                         y: 10
                         width: 270
                         color: "#ffffff"
-                        text: qsTr(" dummie")
+                        text: internal.description
                         anchors.left: parent.left
                         anchors.bottom: parent.bottom
                         font.pixelSize: 12
@@ -523,6 +536,14 @@ Item {
 
                     internal.reloadImgPrev()
                 }
+
+                onHoveredChanged: {
+                    if (comment_txt.text === internal.btn1_comment) {
+                        comment_txt.text = internal.description
+                    } else {
+                        comment_txt.text = internal.btn1_comment
+                    }
+                }
             }
 
             Button_solidSwap {
@@ -548,6 +569,14 @@ Item {
 
                     internal.reloadImgPrev()
                 }
+
+                onHoveredChanged: {
+                    if (comment_txt.text === internal.btn2_comment) {
+                        comment_txt.text = internal.description
+                    } else {
+                        comment_txt.text = internal.btn2_comment
+                    }
+                }
             }
 
             Button_solidSwap {
@@ -568,11 +597,21 @@ Item {
                     if( isClicked )
                     {
                         internal.buttonTrack += 10
+                        comment_txt.text = internal.btn3_comment
                     } else {
                         internal.buttonTrack -= 10
+                        comment_txt.text = internal.description
                     }
 
                     internal.reloadImgPrev()
+                }
+
+                onHoveredChanged: {
+                    if (comment_txt.text === internal.btn3_comment) {
+                        comment_txt.text = internal.description
+                    } else {
+                        comment_txt.text = internal.btn3_comment
+                    }
                 }
             }
 
@@ -599,6 +638,14 @@ Item {
 
                     internal.reloadImgPrev()
                 }
+
+                onHoveredChanged: {
+                    if (comment_txt.text === internal.btn4_comment) {
+                        comment_txt.text = internal.description
+                    } else {
+                        comment_txt.text = internal.btn4_comment
+                    }
+                }
             }
 
             Button_solidSwap {
@@ -614,6 +661,11 @@ Item {
                 default_button_color: "WHITE"
                 hovered_button_color: "WHITE"
                 default_textColor: "WHITE"
+                visible: false
+
+                onClicked: {
+                    stepManager.doNextStep()
+                }
             }
 
             Button_solidSwap {
@@ -628,11 +680,15 @@ Item {
                 default_button_color: "WHITE"
                 hovered_button_color: "WHITE"
                 default_textColor: "WHITE"
+
+                onClicked:  {
+                    stepManager.doBackStep()
+                }
             }
 
             Text {
                 id: title_text
-                text: qsTr("")
+                text: internal.title
                 anchors.verticalCenter: parent.verticalCenter
                 font.letterSpacing: 3
                 font.pixelSize: 12
@@ -644,5 +700,7 @@ Item {
             }
         }
     }
+
+    Connections { target: stepManager }
 
 }
