@@ -1,0 +1,87 @@
+{
+	"STEP":
+	{
+		"has_conditional": "NO",
+		"pageStyle": "BasicIntroPage.qml",
+
+		"title": "Which engine tweaks do you want to install?",
+		"description": "Choose which Ascendio modules you wish to install. Vanilla image previews were taken with ray tracing off, I use an RTX 3070 8GB.",
+
+		"buttonAmount": "4",
+		"buttonSizeX": "160",
+		
+		"step_warning": "1110 | 110 | 111",
+		"warning_message": "This preview was taken from a third party PC with an RTX 3060 12GB as I lack enough VRAM to take it myself. FSR3 and Ray Tracing require a lot of VRAM, so it's recommended to install fine-tune too in order to prevent crashes if you have less than 12 GB VRAM.",
+
+		"button1_text": "FPS HOTFIX",
+		"button1_comment": "FPS hotfix includes memory management fixes and overall optimization to prevent stutterings and boost FPS. Does NOT modify graphics.",
+
+		"button2_text": "RT HOTFIX",
+		"button2_comment": "Uses optimization functions to make Ray Tracing run faster and look better.",
+
+		"button3_text": "FSR3 FrameGen",
+		"button3_comment": "Replaces DLSS Generation with FSR3 FrameGen. Currently not compatible with Ray Tracing.",
+		
+		"button4_text": "FINE-TUNE",
+		"button4_comment": "Tweaks in-game graphics settings to make the game look as good as possible while keeping good fps numbers.",
+		
+		
+		
+		"image_LQ_vanilla": "res/step/1/LQ_vanilla.webp",
+		"image_HQ_vanilla": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_vanilla.webp",
+		
+		"image_LQ_btn1": "res/step/1/LQ_btn1.webp",
+		"image_HQ_btn1": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1.webp",
+		
+		"image_LQ_btn2": "res/step/1/LQ_btn2.webp",
+		"image_HQ_btn2": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2.webp",
+		
+		"image_LQ_btn3": "res/step/1/LQ_btn3.webp",
+		"image_HQ_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn3.webp",
+		
+		"image_LQ_btn4": "res/step/1/LQ_btn4.webp",
+		"image_HQ_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn4.webp",
+		
+		
+		
+		"image_LQ_btn1_btn2": "res/step/1/LQ_btn1_btn2.webp",
+		"image_HQ_btn1_btn2": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2.webp",
+		
+		"image_LQ_btn1_btn3": "res/step/1/LQ_btn1_btn3.webp",
+		"image_HQ_btn1_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn3.webp",
+		
+		"image_LQ_btn1_btn4": "res/step/1/LQ_btn1_btn4.webp",
+		"image_HQ_btn1_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn4.webp",
+		
+		
+		
+		"image_LQ_btn2_btn3": "res/step/1/LQ_btn2_btn3.webp",
+		"image_HQ_btn2_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2_btn3.webp",
+		
+		"image_LQ_btn2_btn4": "res/step/1/LQ_btn2_btn4.webp",
+		"image_HQ_btn2_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2_btn4.webp",
+		
+		
+		
+		"image_LQ_btn3_btn4": "res/step/1/LQ_btn3_btn4.webp",
+		"image_HQ_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn3_btn4.webp",
+		
+		
+		"image_LQ_btn1_btn2_btn3": "res/step/1/LQ_btn1_btn2_btn3.webp",
+		"image_HQ_btn1_btn2_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2_btn3.webp",
+		
+		"image_LQ_btn1_btn3_btn4": "res/step/1/LQ_btn1_btn3_btn4.webp",
+		"image_HQ_btn1_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn3_btn4.webp",
+		
+		"image_LQ_btn1_btn2_btn4": "res/step/1/LQ_btn1_btn2_btn4.webp",
+		"image_HQ_btn1_btn2_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2_btn4.webp",
+		
+		"image_LQ_btn2_btn3_btn4": "res/step/1/LQ_btn2_btn3_btn4.webp",
+		"image_HQ_btn2_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2_btn3_btn4.webp",
+		
+		"image_LQ_btn1_btn2_btn3_btn4": "res/step/1/LQ_btn1_btn2_btn3_btn4.webp",
+		"image_HQ_btn1_btn2_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2_btn3_btn4.webp",
+		
+		"testImage":"https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr1.webp"
+	}
+}
