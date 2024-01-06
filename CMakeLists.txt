@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.16)
 project(SIA VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_PREFIX_PATH "/ruta/del/directorio/de/libwebp")
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AURORCC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
