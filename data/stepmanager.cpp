@@ -21,6 +21,7 @@ void StepManager::setStep(QString currentStep)
 {
     if (!selectedOptions.contains(currentStep)) {
         selectedOptions.append(currentStep);
+        qDebug() << "Element [" + currentStep + "] was successfully attached.";
     } else {
         qDebug() << "Element [" + currentStep + "] is already selected.";
     }
@@ -66,4 +67,10 @@ void StepManager::doBackStep()
 int StepManager::getStepToParse()
 {
     return stepCount;
+}
+
+void StepManager::checkCurrentModules()
+{
+    emit emittedCurrentModules ( selectedOptions.first() );
+    qDebug() << "DONE, EMITTED.";
 }

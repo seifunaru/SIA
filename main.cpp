@@ -2,7 +2,7 @@
 #include <QQmlContext>
 #include <QQmlApplicationEngine>
 
-#include "data/stepManager.h"
+#include "data/stepmanager.h"
 
 int main(int argc, char *argv[])
 {
