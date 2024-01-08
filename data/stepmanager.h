@@ -13,14 +13,16 @@ public:
 
 signals:
     int stepUpdateRequest ( int stepCount );
+    QString emittedCurrentModules ( QString modules );
 
 public slots:
-    void setStep(QString currentStep);
+    void setStep( QString currentStep );
 
     void doNextStep();
     void doBackStep();
 
     int getStepToParse();   // returns MOD_STEP_X
+    void checkCurrentModules();
 };
 
 #endif // STEPMANAGER_H
