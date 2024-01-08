@@ -20,7 +20,7 @@ Item {
         }
 
         function getModDataUrl() {
-            return ":/json/data/json/step/0/modStep.json";
+            return "qrc:/json/data/json/step/0/modStep.json";
         }
 
         function loadModData() {
