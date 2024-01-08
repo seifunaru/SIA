@@ -664,6 +664,7 @@ Item {
                 visible: false
 
                 onClicked: {
+                    stepManager.setStep(internal.buttonTrack.toString())
                     stepManager.doNextStep()
                 }
             }
