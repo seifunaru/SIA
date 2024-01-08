@@ -85,7 +85,7 @@ Item {
         // gets path to step data JSON.
         function getModDataUrl()
         {
-            return "../../json/step/2/modStep.json";
+            return "qrc:/json/data/json/step/2/modStep.json";
         }
 
         // gets data from JSON and defines PRIVATE properties with it.
@@ -152,7 +152,7 @@ Item {
                 width: 320
                 height: 70
                 anchors.verticalCenter: parent.verticalCenter
-                source: "../../../res/modInfo/modLogo.png"
+                source: "qrc:/img/res/modInfo/modLogo.png"
                 anchors.verticalCenterOffset: -100
                 anchors.horizontalCenterOffset: 0
                 fillMode: Image.PreserveAspectFit
@@ -285,7 +285,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 20
-                imageUrl: "./res/system/next.webp"
+                imageUrl: "qrc:/img/res/system/next.webp"
                 imageSize: 70
                 default_button_color: "WHITE"
                 hovered_button_color: "WHITE"

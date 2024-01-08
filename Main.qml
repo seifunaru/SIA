@@ -309,7 +309,7 @@ Window {
                     default_button_color: "White"
                     hovered_button_color: "#f3f3f3"
 
-                    imageUrl: "./res/system/app_maximize.png"
+                    imageUrl: "qrc:/img/res/system/app_maximize.png"
 
                     onClicked: {
                         internal.maximizeRestore()
@@ -332,7 +332,7 @@ Window {
                     default_button_color: "White"
                     hovered_button_color: "#f3f3f3"
 
-                    imageUrl: "./res/system/app_hide.png"
+                    imageUrl: "qrc:/img/res/system/app_hide.png"
 
                     onClicked: window.showMinimized()
                 }
@@ -395,7 +395,7 @@ Window {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
 
-                initialItem: "./data/qml/pageStyle/BasicIntroPage.qml"
+                initialItem: "qrc:/qml/data/qml/pageStyle/BasicIntroPage.qml"
 
             }
 
@@ -567,7 +567,7 @@ Window {
 
             function getModDataUrl()
             {
-                return "data/json/step/" + backendStep.toString() + "/modStep.json";
+                return "qrc:/json/data/json/step/" + backendStep.toString() + "/modStep.json";
             }
 
             console.log(getModDataUrl())
@@ -586,7 +586,7 @@ Window {
                             console.log("PAGE TO PARSE: " + internal.pageStyleToParse)
                             // ** //
 
-                            backendStep = "data/qml/pageStyle/" + internal.pageStyleToParse
+                            backendStep = "qrc:/qml/data/qml/pageStyle/" + internal.pageStyleToParse
                             contentStack.push(backendStep)
                         }
                     }

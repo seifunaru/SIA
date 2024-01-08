@@ -30,7 +30,7 @@ Button {
     // These properties are for the "image" state of the button. They are placeholders.
     property bool  isImageButton: true
     property  int  imageSize: 10
-    property  url  imageUrl: "./res/system/app_close.png"
+    property  url  imageUrl: "qrc:/img/res/system/app_close.png"
 
     // These settings are for the "text" state of the button. Based on the standard application values.
     property int   textSize: currentTheme.default_textSize
@@ -207,7 +207,7 @@ Button {
                 width: imageSize
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: "../../../" + imageUrl
+                source: imageUrl
                 fillMode: Image.PreserveAspectFit
                 visible: isImageButton
             }

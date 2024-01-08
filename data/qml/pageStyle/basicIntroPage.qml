@@ -5,7 +5,7 @@
 // uninstall the mod.
 
 import QtQuick 2.15
-import "../appControls"
+import "qrc:/qml/data/qml/appControls"
 
 Item {
 
@@ -37,7 +37,44 @@ Item {
 
         property int defaultWidth: 950
         property int defaultHeight: 440
-        property string modInfoUrl: "../../../data/modData.json"
+        property string modInfoUrl: "qrc:/json/data/json/modData.json"
+    }
+
+
+    // PRIVATE functions
+
+    // gets path to step data JSON.
+    function getModDataUrl()
+    {
+        return "qrc:/json/data/json/step/0/modStep.json";
+    }
+
+    // gets data from JSON and defines PRIVATE properties with it.
+    function loadModData() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var modData = JSON.parse(xhr.responseText);
+
+                    // MOD INFORMATION
+                    modNameShrt = modData.MOD_INFO.modNameShort
+                    modNameLong = modData.MOD_INFO.modNameLong
+                    modAuthor = modData.MOD_INFO.modVersion
+                    modVersion = modData.MOD_INFO.modAuthor
+                    modGame = modData.MOD_INFO.modGame
+                    expectedModInstallDir = modData.MOD_INFO.
+                    modInstallDir = modData.MOD_INFO.modInstallDir
+
+                    // MEDIA INFORMATION
+                    modLogoImgUrl = modData.MOD_MEDIA.modLogoImgUrl
+
+                    // ** //
+                }
+            }
+        };
+        xhr.open("GET", getModDataUrl());
+        xhr.send();
     }
 
 
@@ -47,28 +84,7 @@ Item {
     anchors.fill: parent
 
     Component.onCompleted: {
-        var xhr = new XMLHttpRequest;
-        xhr.open("GET", internal.modInfoUrl);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                var modInfo = JSON.parse(xhr.responseText);
-
-                modNameShrt = modInfo.MOD_INFO.modNameShort
-                modNameLong = modInfo.MOD_INFO.modNameLong
-                modVersion = modInfo.MOD_INFO.modVersion
-                modAuthor = modInfo.MOD_INFO.modAuthor
-                modGame = modInfo.MOD_INFO.modGame
-                modLogoImgUrl = modInfo.MOD_INFO.modLogoImgUrl
-                expectedModInstallDir = modInfo.MOD_INFO.expectedModInstallDir
-                modInstallDir = modInfo.MOD_INFO.modInstallDir
-
-                console.log("CHECK THIS OUT: ")
-                console.log(modLogoImgUrl)
-                modLogo.source = ("../../../" + modLogoImgUrl)
-            }
-        }
-
-        xhr.send();
+        loadModData()
     }
 
 
@@ -122,7 +138,7 @@ Item {
 
                 Image {
                     id: modLogo
-                    source: ""
+                    source: "qrc:/img/res/modInfo/modLogo.png"
 
                     x: 114
                     y: 72

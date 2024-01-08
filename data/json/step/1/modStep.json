@@ -27,59 +27,59 @@
 		
 		
 		
-		"image_LQ_vanilla": "res/step/1/LQ_vanilla.webp",
+		"image_LQ_vanilla": "qrc:/img/res/step/1/LQ_vanilla.webp",
 		"image_HQ_vanilla": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_vanilla.webp",
 		
-		"image_LQ_btn1": "res/step/1/LQ_btn1.webp",
+		"image_LQ_btn1": "qrc:/img/res/step/1/LQ_btn1.webp",
 		"image_HQ_btn1": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1.webp",
 		
-		"image_LQ_btn2": "res/step/1/LQ_btn2.webp",
+		"image_LQ_btn2": "qrc:/img/res/step/1/LQ_btn2.webp",
 		"image_HQ_btn2": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2.webp",
 		
-		"image_LQ_btn3": "res/step/1/LQ_btn3.webp",
+		"image_LQ_btn3": "qrc:/img/res/step/1/LQ_btn3.webp",
 		"image_HQ_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn3.webp",
 		
-		"image_LQ_btn4": "res/step/1/LQ_btn4.webp",
+		"image_LQ_btn4": "qrc:/img/res/step/1/LQ_btn4.webp",
 		"image_HQ_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn4.webp",
 		
 		
 		
-		"image_LQ_btn1_btn2": "res/step/1/LQ_btn1_btn2.webp",
+		"image_LQ_btn1_btn2": "qrc:/img/res/step/1/LQ_btn1_btn2.webp",
 		"image_HQ_btn1_btn2": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2.webp",
 		
-		"image_LQ_btn1_btn3": "res/step/1/LQ_btn1_btn3.webp",
+		"image_LQ_btn1_btn3": "qrc:/img/res/step/1/LQ_btn1_btn3.webp",
 		"image_HQ_btn1_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn3.webp",
 		
-		"image_LQ_btn1_btn4": "res/step/1/LQ_btn1_btn4.webp",
+		"image_LQ_btn1_btn4": "qrc:/img/res/step/1/LQ_btn1_btn4.webp",
 		"image_HQ_btn1_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn4.webp",
 		
 		
 		
-		"image_LQ_btn2_btn3": "res/step/1/LQ_btn2_btn3.webp",
+		"image_LQ_btn2_btn3": "qrc:/img/res/step/1/LQ_btn2_btn3.webp",
 		"image_HQ_btn2_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2_btn3.webp",
 		
-		"image_LQ_btn2_btn4": "res/step/1/LQ_btn2_btn4.webp",
+		"image_LQ_btn2_btn4": "qrc:/img/res/step/1/LQ_btn2_btn4.webp",
 		"image_HQ_btn2_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2_btn4.webp",
 		
 		
 		
-		"image_LQ_btn3_btn4": "res/step/1/LQ_btn3_btn4.webp",
+		"image_LQ_btn3_btn4": "qrc:/img/res/step/1/LQ_btn3_btn4.webp",
 		"image_HQ_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn3_btn4.webp",
 		
 		
-		"image_LQ_btn1_btn2_btn3": "res/step/1/LQ_btn1_btn2_btn3.webp",
+		"image_LQ_btn1_btn2_btn3": "qrc:/img/res/step/1/LQ_btn1_btn2_btn3.webp",
 		"image_HQ_btn1_btn2_btn3": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2_btn3.webp",
 		
-		"image_LQ_btn1_btn3_btn4": "res/step/1/LQ_btn1_btn3_btn4.webp",
+		"image_LQ_btn1_btn3_btn4": "qrc:/img/res/step/1/LQ_btn1_btn3_btn4.webp",
 		"image_HQ_btn1_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn3_btn4.webp",
 		
-		"image_LQ_btn1_btn2_btn4": "res/step/1/LQ_btn1_btn2_btn4.webp",
+		"image_LQ_btn1_btn2_btn4": "qrc:/img/res/step/1/LQ_btn1_btn2_btn4.webp",
 		"image_HQ_btn1_btn2_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2_btn4.webp",
 		
-		"image_LQ_btn2_btn3_btn4": "res/step/1/LQ_btn2_btn3_btn4.webp",
+		"image_LQ_btn2_btn3_btn4": "qrc:/img/res/step/1/LQ_btn2_btn3_btn4.webp",
 		"image_HQ_btn2_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn2_btn3_btn4.webp",
 		
-		"image_LQ_btn1_btn2_btn3_btn4": "res/step/1/LQ_btn1_btn2_btn3_btn4.webp",
+		"image_LQ_btn1_btn2_btn3_btn4": "qrc:/img/res/step/1/LQ_btn1_btn2_btn3_btn4.webp",
 		"image_HQ_btn1_btn2_btn3_btn4": "https://raw.githubusercontent.com/seifunaru/SIA/main/res/step/1/HQ_btn1_btn2_btn3_btn4.webp",
 		
 		"testImage":"https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr1.webp"

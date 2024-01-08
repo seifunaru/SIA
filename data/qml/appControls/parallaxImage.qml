@@ -20,7 +20,7 @@ Item {
         }
 
         function getModDataUrl() {
-            return "../../json/modData.json";
+            return ":/json/data/json/step/0/modStep.json";
         }
 
         function loadModData() {
@@ -63,10 +63,10 @@ Item {
     // PUBLIC
 
     // path to depth images. 1 = far, 4 = near.
-    property url image1_url: "../../../res/parallaxIntro/parallaxLr1.webp"
-    property url image2_url: "../../../res/parallaxIntro/parallaxLr2.webp"
-    property url image3_url: "../../../res/parallaxIntro/parallaxLr3.webp"
-    property url image4_url: "../../../res/parallaxIntro/parallaxLr4.webp"
+    property url image1_url: "qrc:/img/res/parallaxIntro/parallaxLr1.webp"
+    property url image2_url: "qrc:/img/res/parallaxIntro/parallaxLr2.webp"
+    property url image3_url: "qrc:/img/res/parallaxIntro/parallaxLr3.webp"
+    property url image4_url: "qrc:/img/res/parallaxIntro/parallaxLr4.webp"
 
     // path to high quality web depth images to be retrieved as background process.
     property url image1HQ_url: ""

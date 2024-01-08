@@ -1,7 +1,7 @@
 // ParallaxImage.qml
 
 import QtQuick
-import "../appControls"
+import "qrc:/qml/data/qml/appControls"
 
 Item {
 
@@ -129,83 +129,83 @@ Item {
             switch (buttonTrack)
             {
             case 0000:
-                lowRes.source  = "../../../" + img_LQ_vanilla
+                lowRes.source  = img_LQ_vanilla
                 highRes.source = img_HQ_vanilla
                 comment_txt.text = description
                 break;
 
             case 1000:
-                lowRes.source  = "../../../" + img_LQ_btn1
+                lowRes.source  = img_LQ_btn1
                 highRes.source = img_HQ_btn1
                 break;
 
             case 0100:
-                lowRes.source  = "../../../" + img_LQ_btn2
+                lowRes.source  = img_LQ_btn2
                 highRes.source = img_HQ_btn2
                 break;
 
             case 0010:
-                lowRes.source  = "../../../" + img_LQ_btn3
+                lowRes.source  = img_LQ_btn3
                 highRes.source = img_HQ_btn3
                 break;
 
             case 0001:
-                lowRes.source  = "../../../" + img_LQ_btn4
+                lowRes.source  = img_LQ_btn4
                 highRes.source = img_HQ_btn4
                 break;
 
             case 1100:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn2
+                lowRes.source  = img_LQ_btn1_btn2
                 highRes.source = img_HQ_btn1_btn2
                 break;
 
             case 1010:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn3
+                lowRes.source  = img_LQ_btn1_btn3
                 highRes.source = img_HQ_btn1_btn3
                 break;
 
             case 1001:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn4
+                lowRes.source  = img_LQ_btn1_btn4
                 highRes.source = img_HQ_btn1_btn4
                 break;
 
             case 0110:
-                lowRes.source  = "../../../" + img_LQ_btn2_btn3
+                lowRes.source  = img_LQ_btn2_btn3
                 highRes.source = img_HQ_btn2_btn3
                 break;
 
             case 0101:
-                lowRes.source  = "../../../" + img_LQ_btn2_btn4
+                lowRes.source  = img_LQ_btn2_btn4
                 highRes.source = img_HQ_btn2_btn4
                 break;
 
             case 0111:
-                lowRes.source  = "../../../" + img_LQ_btn2_btn3_btn4
+                lowRes.source  = img_LQ_btn2_btn3_btn4
                 highRes.source = img_HQ_btn2_btn3_btn4
                 break;
 
             case 0011:
-                lowRes.source  = "../../../" + img_LQ_btn3_btn4
+                lowRes.source  = img_LQ_btn3_btn4
                 highRes.source = img_HQ_btn3_btn4
                 break;
 
             case 1110:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn2_btn3
+                lowRes.source  = img_LQ_btn1_btn2_btn3
                 highRes.source = img_HQ_btn1_btn2_btn3
                 break;
 
             case 1011:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn3_btn4
+                lowRes.source  = img_LQ_btn1_btn3_btn4
                 highRes.source = img_HQ_btn1_btn3_btn4
                 break;
 
             case 1101:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn2_btn4
+                lowRes.source  = img_LQ_btn1_btn2_btn4
                 highRes.source = img_HQ_btn1_btn2_btn4
                 break;
 
             case 1111:
-                lowRes.source  = "../../../" + img_LQ_btn1_btn2_btn3_btn4
+                lowRes.source  = img_LQ_btn1_btn2_btn3_btn4
                 highRes.source = img_HQ_btn1_btn2_btn3_btn4
                 break;
             }
@@ -219,7 +219,7 @@ Item {
         // gets path to step data JSON.
         function getModDataUrl()
         {
-            return "../../json/step/1/modStep.json";
+            return "qrc:/json/data/json/step/1/modStep.json";
         }
 
         // gets data from JSON and defines PRIVATE properties with it.
@@ -305,6 +305,9 @@ Item {
                         img_LQ_btn1_btn2_btn3_btn4 = modData.STEP.image_LQ_btn1_btn2_btn3_btn4
                         img_HQ_btn1_btn2_btn3_btn4 = modData.STEP.image_HQ_btn1_btn2_btn3_btn4
 
+                        // Defines vanilla as Low Res source to prevent black screen.
+                        lowRes.source = img_LQ_vanilla
+
                         // ** //
                     }
                 }
@@ -373,7 +376,6 @@ Item {
                 id: lowRes
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
-                source: "../../../" + "res/step/1/LQ_vanilla.webp"
                 onSourceChanged: {
                     checkImgLod.start()
                 }
@@ -514,16 +516,6 @@ Item {
                 state: 'toggleable'
                 btnText: internal.btn1_text
 
-//                onHoveredChanged: {
-//                    if (isHovered) {
-//                        lowRes.visible = true
-//                        highRes.visible=false
-
-//                        // NECESITA CONDICIONAL PARA NO CAMBIAR SOURCE SI YA ESTÁ ELEGIDO
-//                        lowRes.source = "../../../" + internal.img_LQ_btn1
-//                    }
-//                }
-
                 onClicked: {
                     setClicked()
 
@@ -656,7 +648,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 20
-                imageUrl: "./res/system/next.webp"
+                imageUrl: "qrc:/img/res/system/next.webp"
                 imageSize: 70
                 default_button_color: "WHITE"
                 hovered_button_color: "WHITE"
@@ -676,7 +668,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 20
-                imageUrl: "./res/system/back.webp"
+                imageUrl: "qrc:/img/res/system/back.webp"
                 imageSize: 70
                 default_button_color: "WHITE"
                 hovered_button_color: "WHITE"
