@@ -575,10 +575,8 @@ Window {
             // gets which page style template should be used on next step from JSON.
             // also pushes the content stack.
             function loadModData() {
-                console.log("STARTED LOAD MOD DATA")
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
-                    console.log("XHR STATE: "+ xhr.status)
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             var modData = JSON.parse(xhr.responseText);
