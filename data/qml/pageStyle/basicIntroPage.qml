@@ -66,9 +66,6 @@ Item {
                     expectedModInstallDir = modData.MOD_INFO.
                     modInstallDir = modData.MOD_INFO.modInstallDir
 
-                    // MEDIA INFORMATION
-                    modLogoImgUrl = modData.MOD_MEDIA.modLogoImgUrl
-
                     // ** //
                 }
             }
