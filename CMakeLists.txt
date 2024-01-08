@@ -7,7 +7,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AURORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core Gui Network OpenGL Pdf PdfQuick Qml QmlLocalStorage QmlModels QmlWorkerScript QmlXmlListModel Quick3DUtils QuickControls2 QuickControls2Impl QuickDialogs2 QuickDialogs2QuickImpl QuickDialogs2Utils QuickLayouts QuickTemplates2 QuickTimeline ShaderTools Sql Svg)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -27,6 +27,7 @@ qt_add_qml_module(appSIA
         data/qml/appControls/LodImage.qml
         data/qml/pageStyle/BasicIntroPage.qml
         data/qml/pageStyle/Step_ToggleMaker.qml
+        data/qml/pageStyle/Step_ConfirmInstallation.qml
 )
 
 set_target_properties(appSIA PROPERTIES
@@ -38,9 +39,32 @@ set_target_properties(appSIA PROPERTIES
 )
 
 target_link_libraries(appSIA
-    PRIVATE Qt6::Quick
+    PRIVATE
+    Qt6::Quick
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Network
+    Qt6::OpenGL
+    Qt6::Pdf
+    Qt6::PdfQuick
+    Qt6::Qml
+    Qt6::QmlLocalStorage
+    Qt6::QmlModels
+    Qt6::QmlWorkerScript
+    Qt6::QmlXmlListModel
+    Qt6::Quick3DUtils
+    Qt6::QuickControls2
+    Qt6::QuickControls2Impl
+    Qt6::QuickDialogs2
+    Qt6::QuickDialogs2QuickImpl
+    Qt6::QuickDialogs2Utils
+    Qt6::QuickLayouts
+    Qt6::QuickTemplates2
+    Qt6::QuickTimeline
+    Qt6::ShaderTools
+    Qt6::Sql
+    Qt6::Svg
 )
-
 
 install(TARGETS appSIA
     BUNDLE DESTINATION .
