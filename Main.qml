@@ -69,7 +69,7 @@ Window {
             if (windowStatus == 0) {
                 windowStatus = 1
                 window.showMaximized()
-                appFullscreen.imageUrl = "./res/system/app_minimize.png"
+                appFullscreen.imageUrl = "qrc:/img/res/system/app_minimize.png"
                 appBackground.radius = 0
 
                 toggleResizeAreas(false)
@@ -78,7 +78,7 @@ Window {
             } else {
                 windowStatus = 0
                 window.showNormal()
-                appFullscreen.imageUrl = "./res/system/app_maximize.png"
+                appFullscreen.imageUrl = "qrc:/img/res/system/app_maximize.png"
                 appBackground.radius = currentTheme.universalAppRadius
 
                 toggleResizeAreas(true)
