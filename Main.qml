@@ -18,6 +18,8 @@ Window {
     QtObject {
         id: internal
 
+        // Private
+        // APP FUNCTIONALITY PROPERTIES
         property int windowStatus: 0            // Tracks if app window is on fullscreen state (1) or not (0)
         property int defaultAppMargin: 20
         property int currentMouseX: 0
@@ -27,6 +29,19 @@ Window {
 
         property int currentStep: 0             // Tracks te current application step to show. Managed by backend.
         property string pageStyleToParse: ""    // Tracks which is the next expected page style template.
+
+
+        // Private
+        // BASIC MOD_INFO CONTAINER PROPERTIES
+        property string modNameShrt: ""
+        property string modNameLong: ""
+        property string modAuthor: ""
+        property string modVersion: ""
+        property string modGame: ""
+        property url modLogoImgUrl: ""
+        property string expectedModInstallDir: ""
+        property string modInstallDir: ""
+
 
         // This function shows or hides resize and drag areas.
         function toggleResizeAreas(show) {
@@ -45,6 +60,7 @@ Window {
             resizeWindowTopRight.visible = show
         }
 
+        // This function handles the margins used to generate the DropShadow effect on the app background.
         function toggleShadowMargins() {
             // If fullscreen, disables shadow margins.
             if (windowStatus == 1) {
@@ -84,6 +100,37 @@ Window {
                 toggleResizeAreas(true)
             }
         }
+
+        // gets path to step data JSON. Step 0 contains basic MOD_INFO used for the main app view.
+        function getModDataUrl()
+        {
+            return "qrc:/json/data/json/step/0/modStep.json";
+        }
+
+        // gets data from JSON and defines PRIVATE properties with it.
+        function loadModData() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var modData = JSON.parse(xhr.responseText);
+
+                        // MOD INFORMATION
+                        modNameShrt = modData.MOD_INFO.modNameShort
+                        modNameLong = modData.MOD_INFO.modNameLong
+                        modVersion = modData.MOD_INFO.modVersion
+                        internal.modAuthor = modData.MOD_INFO.modAuthor
+                        modGame = modData.MOD_INFO.modGame
+                        expectedModInstallDir = modData.MOD_INFO.
+                        modInstallDir = modData.MOD_INFO.modInstallDir
+
+                        // ** //
+                    }
+                }
+            };
+            xhr.open("GET", getModDataUrl());
+            xhr.send();
+        }
     }
 
 
@@ -109,6 +156,13 @@ Window {
 
     color: "#00000000"  // Transparent because of rounded window borders.
     flags: Qt.Window | Qt.FramelessWindowHint
+
+
+
+    // FUNCTIONS TO PARSE ON APP INIT
+    Component.onCompleted: {
+        internal.loadModData()
+    }
 
 
 
@@ -257,6 +311,58 @@ Window {
                 anchors.topMargin: 0
 
 
+                // WINDOW DECORATION ELEMENTS
+                Text {
+                    id: modName
+                    color: "black"
+                    text: internal.modNameLong.toUpperCase()
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    font.letterSpacing: 3
+                    font.pixelSize: 14
+                    anchors.leftMargin: 25
+                    anchors.verticalCenterOffset: -9
+
+                }
+
+                Text {
+                    id: developedBy
+                    text: qsTr("DEVELOPED BY")
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    font.letterSpacing: 1.5
+                    font.pixelSize: 10
+                    anchors.leftMargin: 25
+                    anchors.verticalCenterOffset: 9
+                }
+
+                Text {
+                    id: poweredBySIA
+                    x: 811
+                    y: 88
+                    color: "black"
+                    text: qsTr("POWERED BY SIA | PUBLIC")
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    font.letterSpacing: 1.5
+                    font.pixelSize: 10
+                    anchors.bottomMargin: 10
+                    anchors.rightMargin: 15
+                }
+
+                Text {
+                    id: modAuthor
+                    text: internal.modAuthor.toUpperCase()
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: developedBy.right
+                    font.letterSpacing: 3
+                    font.pixelSize: 14
+                    anchors.leftMargin: 6
+                    anchors.verticalCenterOffset: 9
+                }
+
+
+                // SYSTEM EVENT HANDLERS
                 // Event handler for window drag and move.
                 MouseArea {
                     id: windowDragArea
@@ -394,6 +500,11 @@ Window {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
+
+//                Rectangle {
+//                    anchors.fill: parent
+//                    color: "BLACK"
+//                }
 
                 initialItem: "qrc:/qml/data/qml/pageStyle/BasicIntroPage.qml"
 
