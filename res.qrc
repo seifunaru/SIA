@@ -44,5 +44,6 @@
         <file>res/system/app_minimize.png</file>
         <file>res/system/back.webp</file>
         <file>res/system/next.webp</file>
+        <file>res/system/AppLogoTransparent.webp</file>
     </qresource>
 </RCC>
