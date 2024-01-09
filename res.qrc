@@ -9,6 +9,7 @@
         <file>data/qml/pageStyle/Step_ConfirmInstallation.qml</file>
         <file>data/qml/pageStyle/Step_ToggleMaker.qml</file>
         <file>data/qml/themes/ThemeManager.qml</file>
+        <file>data/qml/appControls/SiaMessageBox.qml</file>
     </qresource>
     <qresource prefix="/json">
         <file>data/json/modData.json</file>
@@ -45,5 +46,6 @@
         <file>res/system/back.webp</file>
         <file>res/system/next.webp</file>
         <file>res/system/AppLogoTransparent.webp</file>
+        <file>res/system/warningIcon.webp</file>
     </qresource>
 </RCC>
