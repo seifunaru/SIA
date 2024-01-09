@@ -3,6 +3,7 @@
 #include <QQmlApplicationEngine>
 
 #include "data/stepManager.h"
+#include "data/custommodfunctions.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
 
     // stepManager context to track on which step we are, and which options have been chosen.
     StepManager *stepManager = new StepManager;
+    CustomModFunctions *customModFunctions = new CustomModFunctions;
 
     QQmlApplicationEngine engine;
 
@@ -22,6 +24,7 @@ int main(int argc, char *argv[])
     engine.load(QUrl("qrc:/qml/main.qml"));
 
     engine.rootContext()->setContextProperty("stepManager", stepManager);
+    engine.rootContext()->setContextProperty("thisModCxx", customModFunctions);
 
     return app.exec();
 }
