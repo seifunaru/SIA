@@ -5,9 +5,12 @@
 // uninstall the mod.
 
 import QtQuick 2.15
+import QtQuick.Dialogs
 import "qrc:/qml/data/qml/appControls"
 
+
 Item {
+    id: item1
 
     // ------------------------------------------------------------------
     // Page Properties
@@ -101,7 +104,6 @@ Item {
 
 
 
-
         // ------------------------------------------------------------------
         // Middle Area Container
         // ------------------------------------------------------------------
@@ -173,8 +175,12 @@ Item {
 
             Button_solidSwap {
                 id: buttonOp1
+                width: 250
                 anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenterOffset: -135
                 anchors.horizontalCenter: parent.horizontalCenter
+
+                btnText: "QUICK UNINSTALL"
 
                 isImageButton: false
 
@@ -184,10 +190,152 @@ Item {
                 }
             }
 
+            Button_solidSwap {
+                id: buttonOp2
+                width: 250
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenterOffset: 135
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                btnText: "ASSISTED INSTALLATION"
+
+                isImageButton: false
+
+                onClicked: {
+                    thisModCxx.checkModInstallDir1("AUTO")
+                }
+            }
+
         }
 
     }
 
+
+
+    // File dialog used for engine file localization.
+    FileDialog {
+        id: fileDialog1
+        title: "Find and select your Engine.ini file."
+
+        onAccepted: {
+            console.log("SELECTED FILE:", fileDialog1.selectedFile)
+            thisModCxx.checkModInstallDir1(fileDialog1.selectedFile)
+            // Puedes acceder al archivo seleccionado a través de fileDialog.fileUrls[0]
+        }
+
+        onRejected: {
+            console.log("Selección de archivo cancelada")
+        }
+    }
+
+    // File dialog used for exe file localization.
+    FileDialog {
+        id: fileDialog2
+        title: "Find and select your HogwartsLegacy.exe"
+
+        onAccepted: {
+            console.log("SELECTED FILE:", fileDialog2.selectedFile)
+            thisModCxx.checkModInstallDir2(fileDialog2.selectedFile)
+            // Puedes acceder al archivo seleccionado a través de fileDialog.fileUrls[0]
+        }
+
+        onRejected: {
+            console.log("Selección de archivo cancelada")
+        }
+    }
+
+
+
+
+    // Page Disabler
+    // The page gets disabled when the custom message box is visible.
+    Rectangle {
+        id: pageDisabler
+        anchors.fill: parent
+
+        color: "#dce9e9e9"
+        visible: false
+
+        MouseArea {
+            anchors.fill: parent
+        }
+    }
+
+
+
+
+    SiaMessageBox {
+        id: messageBox1
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -55
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        title: "Ascendio could not find your Engine file"
+        description: "Ascendio was not able to automatically find your Engine.ini file. This is usually located at %localappdata%/Hogwarts Legacy/Saved/Config/WindowsNoEditor, but in your case it's not there for some reason. You'll have to find it and select it manually."
+
+        visible: false
+
+        onVisibleChanged: {
+            if (visible) {
+                pageDisabler.visible = true
+            } else {
+                fileDialog1.open()
+                pageDisabler.visible = false
+            }
+        }
+    }
+
+
+    SiaMessageBox {
+        id: messageBox2
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -55
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        title: "Ascendio could not find your Hogwarts Legacy .Exe"
+        description: "Ascendio was not able to locate your Hogwarts Legacy.exe. Please, find it and select it. It's usually located at /your_steam_dir/steamapps/common/Hogwarts Legacy/HogwartsLegacy.exe"
+
+        visible: false
+
+        onVisibleChanged: {
+            if (visible) {
+                pageDisabler.visible = true
+            } else {
+                fileDialog2.open()
+                pageDisabler.visible = false
+            }
+        }
+    }
+
+
+
+    // BACKEND CONNECTIONS
+
     Connections { target: stepManager }
+
+    Connections {
+        target: thisModCxx
+
+        function onMod_install_dir_1_isOk(response)
+        {
+            if (response === true) {
+                thisModCxx.checkModInstallDir2("AUTO")
+            }
+            else {
+                messageBox1.visible = true
+            }
+        }
+
+        function onMod_install_dir_2_isOk(response)
+        {
+            if (response === true) {
+                stepManager.doNextStep()
+            }
+            else {
+                messageBox2.visible = true
+            }
+        }
+    }
+
 
 }
