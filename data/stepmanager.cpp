@@ -4,6 +4,8 @@
 #include <QVector>
 #include <QString>
 #include <QDebug>
+#include <QFile>
+#include <QStandardPaths>
 
 // This vector of strings tracks which options have been chosen on all steps.
 QVector <QString> selectedOptions;
@@ -74,3 +76,8 @@ void StepManager::checkCurrentModules()
     emit emittedCurrentModules ( selectedOptions.first() );
     qDebug() << "DONE, EMITTED.";
 }
+
+
+
+
+
