@@ -8,11 +8,12 @@
     "MOD_INFO":
     {
         "modNameShort": "Ascendio",
-        "modNameLong": "Ascendio FPS Hotfix and Engine Tweaks",
+        "modNameLong": "Ascendio FPS Hotfix & Engine Tweaks",
         "modVersion": "3.0",
         "modAuthor": "Seifu",
         "modGame": "Hogwarts Legacy",
-        "expectedModInstallDir": "AUTO",
+        "expectedModInstallDir1": "Saved/Config/WindowsNoEditor/Engine.ini",
+        "expectedModInstallDir2": "Phoenix/binaries/win64/HogwartsLegacy.exe",
         "modInstallDir": ""
     },
 
