@@ -17,6 +17,31 @@ StepManager::StepManager(QObject *parent) : QObject(parent)
 
 
 
+// ####################################################################################
+// HOTFIX : Should be removed on future updates
+// ####################################################################################
+
+// Context:
+// Qt 6.6.0 has a bug where some slower processes such as a QML FileManager.onAccepted
+// can emit doubled signals, causing unintended behaviors on the application.
+// The bug has been bypassed by ALWAYS setting the step to stepCount to 1 when the file
+// manager emits a signal. So even if it gets doubled, the stepCount will remain 1.
+
+// I think this mod has been fixed on v 6.6.1, which is the build I'm using on Linux,
+// but I'll keep this change even there for cross-platform consistency.
+
+// This will be addressed as soon as I update the project to a more up to date Qt build.
+
+void StepManager::initModInstall()
+{
+    stepCount = 1;
+    emit stepUpdateRequest ( stepCount );
+}
+
+// ####################################################################################
+
+
+
 
 //This function sets a chosen step by the user on selectedOptions vector.
 void StepManager::setStep(QString currentStep)

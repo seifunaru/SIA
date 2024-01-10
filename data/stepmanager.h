@@ -16,6 +16,7 @@ signals:
     QString emittedCurrentModules ( QString modules );
 
 public slots:
+    void initModInstall();  // Sets the step to 1 to prevent a double-emit signal bug caused by the QML file manager present in Qt 6.6.0.
     void setStep( QString currentStep );
 
     void doNextStep();

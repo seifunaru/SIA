@@ -11,6 +11,7 @@ public:
     explicit CustomModFunctions(QObject *parent = nullptr);
 
 signals:
+    void request_init_modInstallation();
     bool mod_install_dir_1_isOk ( bool state );
     bool mod_install_dir_2_isOk ( bool state );
 

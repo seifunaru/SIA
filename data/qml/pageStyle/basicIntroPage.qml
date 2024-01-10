@@ -329,11 +329,16 @@ Item {
         function onMod_install_dir_2_isOk(response)
         {
             if (response === true) {
-                stepManager.doNextStep()
+                stepManager.initModInstall()
             }
             else {
                 messageBox2.visible = true
             }
+        }
+
+        function onRequest_init_modInstallation()
+        {
+
         }
     }
 
