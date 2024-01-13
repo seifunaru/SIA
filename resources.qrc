@@ -19,6 +19,7 @@
         <file>data/json/step/1/modStep.json</file>
         <file>data/json/step/2/modStep.json</file>
         <file>data/json/step/3/modStep.json</file>
+        <file>data/json/step/4/modStep.json</file>
     </qresource>
     <qresource prefix="/img">
         <file>res/modInfo/modLogo.png</file>
