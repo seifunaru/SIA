@@ -13,7 +13,8 @@ HEADERS += \
         data/custommodfunctions.h \
         data/stepmanager.h
 
-RESOURCES += res.qrc
+RESOURCES += \
+    resources.qrc
 
 RC_ICONS = AppLogo.ico
 
