@@ -314,7 +314,7 @@ Window {
                 // WINDOW DECORATION ELEMENTS
                 Text {
                     id: modName
-                    color: "black"
+                    color: "#cccccc"
                     text: internal.modNameLong.toUpperCase()
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
@@ -327,6 +327,7 @@ Window {
 
                 Text {
                     id: developedBy
+                    color: "#cccccc"
                     text: qsTr("DEVELOPED BY")
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
@@ -340,7 +341,7 @@ Window {
                     id: poweredBySIA
                     x: 811
                     y: 88
-                    color: "black"
+                    color: "#cccccc"
                     text: qsTr("POWERED BY SIA | PUBLIC")
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
@@ -352,6 +353,7 @@ Window {
 
                 Text {
                     id: modAuthor
+                    color: "#cccccc"
                     text: internal.modAuthor.toUpperCase()
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: developedBy.right
