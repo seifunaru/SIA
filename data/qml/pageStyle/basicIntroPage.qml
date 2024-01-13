@@ -7,7 +7,7 @@
 import QtQuick 2.15
 import QtQuick.Dialogs
 import "qrc:/qml/data/qml/appControls"
-
+import "qrc:/modFile/data/modFiles"
 
 Item {
     id: item1
@@ -86,6 +86,8 @@ Item {
     Component.onCompleted: {
         loadModData()
     }
+
+    ModfileInfoQml { id: modInfo }
 
 
 
@@ -185,8 +187,7 @@ Item {
                 isImageButton: false
 
                 onClicked: {
-                    buttonOp1.setClicked()
-                    stepManager.doNextStep()
+                    thisModCxx.checkModUninstallDir1("AUTO")
                 }
             }
 
@@ -236,6 +237,41 @@ Item {
         onAccepted: {
             console.log("SELECTED FILE:", fileDialog2.selectedFile)
             thisModCxx.checkModInstallDir2(fileDialog2.selectedFile)
+            // Puedes acceder al archivo seleccionado a través de fileDialog.fileUrls[0]
+        }
+
+        onRejected: {
+            console.log("Selección de archivo cancelada")
+        }
+    }
+
+
+
+
+    // File dialog used for engine file localization. UNINSTALL
+    FileDialog {
+        id: fileDialog3
+        title: "Find and select your Engine.ini file."
+
+        onAccepted: {
+            console.log("SELECTED FILE:", fileDialog1.selectedFile)
+            thisModCxx.checkModUninstallDir1(fileDialog1.selectedFile)
+            // Puedes acceder al archivo seleccionado a través de fileDialog.fileUrls[0]
+        }
+
+        onRejected: {
+            console.log("Selección de archivo cancelada")
+        }
+    }
+
+    // File dialog used for exe file localization. UNINSTALL
+    FileDialog {
+        id: fileDialog4
+        title: "Find and select your HogwartsLegacy.exe"
+
+        onAccepted: {
+            console.log("SELECTED FILE:", fileDialog4.selectedFile)
+            thisModCxx.checkModUninstallDir2(fileDialog4.selectedFile)
             // Puedes acceder al archivo seleccionado a través de fileDialog.fileUrls[0]
         }
 
@@ -308,14 +344,112 @@ Item {
     }
 
 
+    SiaMessageBox {
+        id: messageBox3 // uninstall
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -55
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        title: "Ascendio could not find your Engine file"
+        description: "Ascendio was not able to automatically find your Engine.ini file. This is usually located at %localappdata%/Hogwarts Legacy/Saved/Config/WindowsNoEditor, but in your case it's not there for some reason. You'll have to find it and select it manually."
+
+        visible: false
+
+        onVisibleChanged: {
+            if (visible) {
+                pageDisabler.visible = true
+            } else {
+                fileDialog3.open()
+                pageDisabler.visible = false
+            }
+        }
+    }
+
+
+    SiaMessageBox {
+        id: messageBox4
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -55
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        title: "Ascendio could not find your Hogwarts Legacy .Exe"
+        description: "Ascendio was not able to locate your Hogwarts Legacy.exe. Please, find it and select it. It's usually located at /your_steam_dir/steamapps/common/Hogwarts Legacy/HogwartsLegacy.exe"
+
+        visible: false
+
+        onVisibleChanged: {
+            if (visible) {
+                pageDisabler.visible = true
+            } else {
+                fileDialog4.open()
+                pageDisabler.visible = false
+            }
+        }
+    }
+
+
+    SiaMessageBox {
+        id: messageBox5 // Used for uninstallation
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -55
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        visible: false
+
+        onVisibleChanged: {
+            if (visible) {
+                pageDisabler.visible = true
+            } else {
+                pageDisabler.visible = false
+            }
+        }
+    }
+
+    SiaMessageBox {
+        id: messageBox6 // Used for uninstallation
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: -55
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        visible: false
+
+        onVisibleChanged: {
+            if (visible) {
+                pageDisabler.visible = true
+            } else {
+                pageDisabler.visible = false
+            }
+        }
+    }
+
+
 
     // BACKEND CONNECTIONS
 
-    Connections { target: stepManager }
+    Connections {
+        target: stepManager
+
+        function onFileRemoveError(error)
+        {
+            messageBox6.title = "Uninstallation failed."
+            messageBox6.description = "One or more files could not be removed, error: " + error + "\n\nYou could try uninstalling manually."
+            messageBox6.visible = true
+        }
+
+        function onUninstallFinished()
+        {
+            messageBox5.title = "Uninstallation Finished Successfully!."
+            messageBox5.description = "Ascendio has been uninstalled from your system, you can now close this application and also delete it if you want."
+            if (!messageBox6.visible) {
+                messageBox5.visible = true
+            }
+        }
+    }
 
     Connections {
         target: thisModCxx
 
+        // MOD INSTALL
         function onMod_install_dir_1_isOk(response)
         {
             if (response === true) {
@@ -336,11 +470,34 @@ Item {
             }
         }
 
-        function onRequest_init_modInstallation()
-        {
 
+        // MOD UNINSTALL
+
+        function onMod_uninstall_dir_1_isOk(response)
+        {
+            if (response === true) {
+                thisModCxx.checkModUninstallDir2("AUTO")
+            }
+            else {
+                messageBox3.visible = true
+            }
+        }
+
+        function onMod_uninstall_dir_2_isOk(response)
+        {
+            if (response === true) {
+                thisModCxx.getInstallDirs();
+                stepManager.initModUninstall()
+            }
+            else {
+                messageBox4.visible = true
+            }
+        }
+
+        function onEmittedInstallDirs(dir1, dir2)
+        {
+            stepManager.setInstallDir (dir1, dir2, modInfo.mod_intro, modInfo.fps_hotfix, modInfo.rt_hotfix)
+            stepManager.initModRemove()
         }
     }
-
-
 }
