@@ -7,6 +7,8 @@
 #include <QFile>
 #include <QSettings>
 #include <QResource>
+#include <QDesktopServices>
+#include <QUrl>
 
 // This vector of strings tracks which options have been chosen on all steps.
 QVector <QString> selectedOptions;
@@ -298,4 +300,15 @@ void StepManager::initModRemove ()
         }
     }
     emit uninstallFinished();
+}
+
+
+void StepManager::process_donate_button()
+{
+    QDesktopServices::openUrl(QUrl("www.patreon.com/seifu", QUrl::TolerantMode));
+}
+
+void StepManager::process_exit_button()
+{
+    emit terminate_app_request();
 }

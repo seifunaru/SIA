@@ -15,6 +15,7 @@ signals:
     int stepUpdateRequest ( int stepCount );
     QString emittedCurrentModules ( QString modules );
     void allStepsReadyToInstall (QString allSteps); // signal used to parse all steps to install to the CMF.
+    void terminate_app_request();
 
     // ------- ProgressBar Signals -------
     void installationProgressAt20p();
