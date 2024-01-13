@@ -10,12 +10,15 @@
         <file>data/qml/pageStyle/Step_ToggleMaker.qml</file>
         <file>data/qml/themes/ThemeManager.qml</file>
         <file>data/qml/appControls/SiaMessageBox.qml</file>
+        <file>data/qml/pageStyle/Step_ProgressBarInstall.qml</file>
+        <file>data/qml/pageStyle/Step_Credits.qml</file>
     </qresource>
     <qresource prefix="/json">
         <file>data/json/modData.json</file>
         <file>data/json/step/0/modStep.json</file>
         <file>data/json/step/1/modStep.json</file>
         <file>data/json/step/2/modStep.json</file>
+        <file>data/json/step/3/modStep.json</file>
     </qresource>
     <qresource prefix="/img">
         <file>res/modInfo/modLogo.png</file>
@@ -47,5 +50,10 @@
         <file>res/system/next.webp</file>
         <file>res/system/AppLogoTransparent.webp</file>
         <file>res/system/warningIcon.webp</file>
+    </qresource>
+    <qresource prefix="/modFile">
+        <file>data/modFiles/ModfileInfoQml.qml</file>
+        <file>data/modFiles/dlssg_to_fsr3_amd_is_better.dll</file>
+        <file>data/modFiles/version.dll</file>
     </qresource>
 </RCC>
