@@ -159,6 +159,21 @@ Item {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
+
+            Button_solidSwap {
+                id: nextStep
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                btnText: "FINISH"
+                isImageButton: false
+
+                visible: false //turns visible on 100p progress.
+
+                onClicked: {
+                    stepManager.doNextStep()
+                }
+
+            }
         }
 
 
@@ -197,6 +212,7 @@ Item {
         {
             installProgress.progressCount = 100
             progressStatus.text = qsTr("| 100% | PROGRESS: ASCENDIO HAS BEEN SUCCESSFULLY INSTALLED.")
+            nextStep.visible = true
         }
 
     }
