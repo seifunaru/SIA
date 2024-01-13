@@ -711,5 +711,10 @@ Window {
             loadModData()
 
         }
+
+        function onTerminateAppRequest()
+        {
+            appExit.clicked()
+        }
     }
 }
