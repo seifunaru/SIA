@@ -6,12 +6,13 @@
 
 		"mod1": "FPS HOTFIX",
 		"mod2": "RT HOTFIX",
-		"mod3": "FSR3 FRAME GEN",
-		"mod4": "FINE TUNE",
+                "mod3": "FINE TUNE",
+                "mod4": "FSR3 FRAMEGEN",
 		
-		"File1": "Engine.ini",
-		"File2": "Phoenix/Binaries/Win64/dlssg_to_fsr3_amd_is_better.dll",
-		"File3": "Phoenix/Binaries/Win64/version.dll",
+                "File1": "[..]/Hogwarts Legacy/Saved/Config/WindowsNoEditor/Engine.ini",
+                "File2": "[..]/Hogwarts Legacy/Saved/Config/WindowsNoEditor/GameUsserSettings.ini",
+                "File3": "[..]/Phoenix/Binaries/Win64/dlssg_to_fsr3_amd_is_better.dll",
+                "File4": "[..]/Phoenix/Binaries/Win64/version.dll",
 		
 		"testImage":"https://raw.githubusercontent.com/seifunaru/SIA/main/res/parallaxIntro/parallaxHr1.webp"
 	}
