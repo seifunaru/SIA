@@ -2,6 +2,6 @@
 	"STEP":
 	{
 		"has_conditional": "NO",
-		"pageStyle": "Step_Credits.qml"
+                "pageStyle": "Step_Credits.qml"
 	}
 }
