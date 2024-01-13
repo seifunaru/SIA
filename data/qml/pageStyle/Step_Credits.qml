@@ -12,7 +12,7 @@ Item {
     QtObject {
         id: internal
 
-        property int stepCredits: 225
+        property int stepCredits: 215
 
     }
 
@@ -56,7 +56,7 @@ Item {
                     width: 458
                     height: 194
                     color: "#ffffff"
-                    text: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">SnowTheBard</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Melodic Fortress</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">emmanuelle </p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Krackcat</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Cody Ambrose</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Matthew Manley</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Andrethegiant</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Tangled_Mesh</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Chabs</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Euliemia</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Hector Juarez</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Young Phoenix</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Sir Bughunter</p></body></html>"
+                    text: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">SnowTheBard</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Melodic Fortress</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">emmanuelle </span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Krackcat</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Cody Ambrose</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Matthew Manley</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Andrethegiant</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Tangled_Mesh</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Chabs</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Euliemia</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Hector Juarez</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Young Phoenix</span></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Sir Bughunter</span></p></body></html>"
                     anchors.top: parent.top
                     font.letterSpacing: 1.2
                     font.pixelSize: 15
@@ -71,27 +71,21 @@ Item {
 
             Text {
                 id: text1
-                x: 297
-                y: -81
                 color: "#ffffff"
                 text: "· SPECIAL THANKS TO MY PATREON SUPPORTERS ·"
                 anchors.top: parent.top
-                anchors.bottom: parent.bottom
                 font.letterSpacing: 3
                 font.pixelSize: 18
                 horizontalAlignment: Text.AlignHCenter
-                textFormat: Text.RichText
-                anchors.bottomMargin: 279
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.topMargin: 29
+                anchors.topMargin: 20
+                textFormat: Text.RichText
                 font.underline: false
                 font.family: "Arial"
             }
 
             Text {
                 id: text2
-                x: 291
-                y: -79
                 width: 420
                 color: "#ffffff"
                 text: qsTr("THESE PROJECTS WOULDN'T BE POSSIBLE WITHOUT THEM!")
@@ -99,9 +93,8 @@ Item {
                 font.letterSpacing: 3
                 font.pixelSize: 10
                 horizontalAlignment: Text.AlignHCenter
-                anchors.horizontalCenterOffset: 0
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.topMargin: 3
+                anchors.topMargin: 10
                 font.underline: false
                 font.family: "Arial"
             }
@@ -129,7 +122,7 @@ Item {
                 btnText: "DONATE"
                 isImageButton: false
 
-                onClicked: { backend.process_donate_button() }
+                onClicked: { stepManager.process_donate_button() }
             }
 
             Button_solidSwap {
@@ -140,7 +133,7 @@ Item {
                 anchors.horizontalCenterOffset: -110
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                onClicked: { backend.process_exit_button() }
+                onClicked: { stepManager.process_exit_button() }
             }
 
         }
@@ -149,7 +142,7 @@ Item {
 
     Timer {
         id: clk
-        interval: 15; running: true; repeat: true
+        interval: 25; running: true; repeat: true
         onTriggered: { internal.stepCredits -= 1; credits.anchors.topMargin = internal.stepCredits }
     }
 
