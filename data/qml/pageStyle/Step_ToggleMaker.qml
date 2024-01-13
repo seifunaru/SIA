@@ -511,7 +511,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: 10
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.horizontalCenterOffset: -270
+                anchors.horizontalCenterOffset: -90
                 isImageButton: false
                 state: 'toggleable'
                 btnText: internal.btn1_text
@@ -548,6 +548,7 @@ Item {
                 isImageButton: false
                 state: 'toggleable'
                 btnText: internal.btn2_text
+                visible: false
 
                 onClicked: {
                     setClicked()
@@ -617,6 +618,7 @@ Item {
                 isImageButton: false
                 state: 'toggleable'
                 btnText: internal.btn4_text
+                visible: false
 
                 onClicked: {
                     setClicked()

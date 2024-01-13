@@ -202,17 +202,17 @@ void StepManager::initModUnpack ()
 
         // Fine tune goes here. Idealy it should be set by using JSON data, but I don't have time to
         // implement that right now, so here is a dirty implemen tation to get the job done.
-        graphicsSettings.setValue("sg.ViewDistanceQuality","2");
+        graphicsSettings.setValue("sg.ViewDistanceQuality","1");
         graphicsSettings.setValue("sg.AntiAliasingQuality","3");
-        graphicsSettings.setValue("sg.ShadowQuality","2");
-        graphicsSettings.setValue("sg.PostProcessQuality","1");
-        graphicsSettings.setValue("sg.TextureQuality","2");
+        graphicsSettings.setValue("sg.ShadowQuality","0");
+        graphicsSettings.setValue("sg.PostProcessQuality","0");
+        graphicsSettings.setValue("sg.TextureQuality","0");
         graphicsSettings.setValue("sg.EffectsQuality","2");
-        graphicsSettings.setValue("sg.FoliageQuality","2");
+        graphicsSettings.setValue("sg.FoliageQuality","1");
         graphicsSettings.setValue("sg.ShadingQuality","3");
-        graphicsSettings.setValue("sg.VolumetricsQuality","2");
-        graphicsSettings.setValue("sg.SkyQuality","1");
-        graphicsSettings.setValue("sg.PopulationQuality","2");
+        graphicsSettings.setValue("sg.VolumetricsQuality","0");
+        graphicsSettings.setValue("sg.SkyQuality","0");
+        graphicsSettings.setValue("sg.PopulationQuality","1");
         graphicsSettings.setValue("sg.RaytracingQuality","3");
 
         graphicsSettings.sync();
