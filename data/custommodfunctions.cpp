@@ -8,7 +8,7 @@
 
 QString mod_install_dir_1;
 QString mod_install_dir_2;
-QString selectedOptions;
+QString selectedOps;
 
 CustomModFunctions::CustomModFunctions(QObject *parent) : QObject(parent)
 {
@@ -28,23 +28,24 @@ void CustomModFunctions::checkModInstallDir1( QString userInput )
     {
         qDebug() << "Trying AUTO path";
         // Assigns expected engine.ini path.
-        QString localAppDataPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-        localAppDataPath.append("/Hogwarts Legacy/Saved/Config/WindowsNoEditor/Engine.ini");
+        QDir dataPath = QDir::home();
+        QString localDataPath = dataPath.absolutePath() + "/.local/share/Steam/steamapps/compatdata/990080/pfx/drive_c/users/steamuser/AppData/Local/Hogwarts Legacy/Saved/Config/WindowsNoEditor/Engine.ini";
+
+        qDebug() << "SEARCHED IN: " << localDataPath;
 
         // Assigns engine path to a qfile.
-        QFile file(localAppDataPath);
+        QFile file(localDataPath);
 
         // If file doesn't exist, ask the user for a file.
         if (file.exists())
         {
-            mod_install_dir_1 = localAppDataPath;
+            mod_install_dir_1 = localDataPath;
             mod_install_dir_1.chop(10);
 
             qDebug() << "INSTALLATION DIR 1 AUTHENTICATED. DIR 1 = " + mod_install_dir_1;
             emit mod_install_dir_1_isOk(true);
 
         } else {
-
             qDebug() << "INSTALLATION DIR 1 IS NOT VALID. REQUESTING NEW PATH";
             emit mod_install_dir_1_isOk(false);
         }
@@ -75,33 +76,40 @@ void CustomModFunctions::checkModInstallDir2( QString userInput )
 {
     if (userInput == "AUTO")
     {
+        // Try 0
+        QDir dataPath = QDir::home();
+        QString localDataPath = dataPath.absolutePath() + "/.local/share/Steam/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe";
+
         // Sets a QFile to check different usual paths.
-        QFile file ("C:/Program Files (x86)/Steam/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
+        QFile file (localDataPath);
+
 
         // Try 1
         if (file.exists()) {
+            mod_install_dir_2 = localDataPath;
+            mod_install_dir_2.chop(18);
             qDebug() << "It's a miracle! File exists: " + file.fileName();
+            emit mod_install_dir_2_isOk(true);
         } else {
             file.setFileName("D:/SteamLibrary/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
-        }
 
-        // Try 2
-        if (file.exists()) {
-            qDebug() << "It's a miracle! File exists: " + file.fileName();
-        } else {
-            file.setFileName("E:/SteamLibrary/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
-        }
+            // Try 2
+            if (file.exists()) {
+                qDebug() << "It's a miracle! File exists: " + file.fileName();
+            } else {
+                file.setFileName("E:/SteamLibrary/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
 
-        // Try 3
-        if (file.exists()) {
-            qDebug() << "It's a miracle! File exists: " + file.fileName();
-        } else {
-            file.setFileName("F:/SteamLibrary/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
+                // Try 3
+                if (file.exists()) {
+                    qDebug() << "It's a miracle! File exists: " + file.fileName();
+                } else {
+                    file.setFileName("F:/SteamLibrary/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
+                    // Couldn't find the file!
+                    // Ask the user for the game exe path.
+                    emit mod_install_dir_2_isOk(false);
+                }
+            }
         }
-
-        // Couldn't find the file!
-        // Ask the user for the game exe path.
-        emit mod_install_dir_2_isOk(false);
     }
 
     else
@@ -153,7 +161,6 @@ void CustomModFunctions::checkModInstallDir2( QString userInput )
 
 }
 
-
 // This functions checks if Ascendio's engine.ini exists in its default path for uninstallation.
 void CustomModFunctions::checkModUninstallDir1( QString userInput )
 {
@@ -163,16 +170,17 @@ void CustomModFunctions::checkModUninstallDir1( QString userInput )
     {
         qDebug() << "Trying AUTO path";
         // Assigns expected engine.ini path.
-        QString localAppDataPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-        localAppDataPath.append("/Hogwarts Legacy/Saved/Config/WindowsNoEditor/Engine.ini");
+        QDir dataPath = QDir::home();
+        QString localDataPath = dataPath.absolutePath() + "/.local/share/Steam/steamapps/compatdata/990080/pfx/drive_c/users/steamuser/AppData/Local/Hogwarts Legacy/Saved/Config/WindowsNoEditor/Engine.ini";
+        qDebug() << "SEARCHED IN: " << localDataPath;
 
         // Assigns engine path to a qfile.
-        QFile file(localAppDataPath);
+        QFile file(localDataPath);
 
         // If file doesn't exist, ask the user for a file.
         if (file.exists())
         {
-            mod_install_dir_1 = localAppDataPath;
+            mod_install_dir_1 = localDataPath;
             mod_install_dir_1.chop(10);
 
             qDebug() << "INSTALLATION DIR 1 AUTHENTICATED. DIR 1 = " + mod_install_dir_1;
@@ -210,12 +218,20 @@ void CustomModFunctions::checkModUninstallDir2( QString userInput )
 {
     if (userInput == "AUTO")
     {
+        // Try 0
+        QDir dataPath = QDir::home();
+        QString localDataPath = dataPath.absolutePath() + "/.local";
+        localDataPath.append("/share/Steam/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
+
         // Sets a QFile to check different usual paths.
-        QFile file ("C:/Program Files (x86)/Steam/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
+        QFile file (localDataPath);
+
 
         // Try 1
         if (file.exists()) {
+            mod_install_dir_2 = localDataPath;
             qDebug() << "It's a miracle! File exists: " + file.fileName();
+            emit mod_install_dir_2_isOk(true);
         } else {
             file.setFileName("D:/SteamLibrary/steamapps/common/Hogwarts Legacy/Phoenix/Binaries/Win64/HogwartsLegacy.exe");
         }

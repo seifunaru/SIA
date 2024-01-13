@@ -1,20 +1,20 @@
-QT += quick widgets
+QT += quick
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        data/custommodfunctions.cpp \
         main.cpp \
-        data/stepmanager.cpp
+        data/stepmanager.cpp \
+        data/custommodfunctions.cpp
 
 HEADERS += \
-        data/custommodfunctions.h \
-        data/stepmanager.h
+    data/stepmanager.h \
+    data/custommodfunctions.h
 
 RESOURCES += \
-    resources.qrc
+    res.qrc
 
 RC_ICONS = AppLogo.ico
 
@@ -28,3 +28,19 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+
+# CQTDEPLOY
+QT_DIR= $$[QT_HOST_BINS]
+win32:QMAKE_BIN= $$QT_DIR/qmake.exe
+contains(QMAKE_HOST.os, Linux):{
+    QMAKE_BIN= $$QT_DIR/qmake
+}
+
+DESTDIR=$$PWD/Build
+
+deploy.commands= cqtdeployer -bin $$DESTDIR/$$TARGET -qmake $$QMAKE_BIN -libDir $$PWD -qmlDir $$PWD -recursiveDepth 5
+
+QMAKE_EXTRA_TARGETS += deploy
+

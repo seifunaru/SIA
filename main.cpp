@@ -2,11 +2,14 @@
 #include <QQmlContext>
 #include <QQmlApplicationEngine>
 
-#include "data/stepManager.h"
+#include "data/stepmanager.h"
 #include "data/custommodfunctions.h"
 
 int main(int argc, char *argv[])
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
     QGuiApplication app(argc, argv);
 
     // Allow QML file read to get data from JSON files
@@ -17,11 +20,17 @@ int main(int argc, char *argv[])
     CustomModFunctions *customModFunctions = new CustomModFunctions;
 
     QQmlApplicationEngine engine;
-
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-        &app, []() { QCoreApplication::exit(-1); },
+    const QUrl url(QStringLiteral("qrc:/qml/main.qml"));
+    QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreated,
+        &app,
+        [url](QObject *obj, const QUrl &objUrl) {
+            if (!obj && url == objUrl)
+                QCoreApplication::exit(-1);
+        },
         Qt::QueuedConnection);
-    engine.load(QUrl("qrc:/qml/main.qml"));
+    engine.load(url);
 
     engine.rootContext()->setContextProperty("stepManager", stepManager);
     engine.rootContext()->setContextProperty("thisModCxx", customModFunctions);
