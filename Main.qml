@@ -712,7 +712,7 @@ Window {
 
         }
 
-        function onTerminateAppRequest()
+        function onTerminate_app_request()
         {
             appExit.clicked()
         }
