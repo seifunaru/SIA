@@ -1,6 +1,6 @@
 import QtQuick 2.15
 
-import "../appControls"
+import "qrc:/qml/data/qml/appControls"
 
 Item {
     id: cs_module
