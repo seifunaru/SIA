@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/qml">
-        <file>main.qml</file>
         <file>data/qml/appControls/Button_solidSwap.qml</file>
         <file>data/qml/appControls/LodImage.qml</file>
         <file>data/qml/appControls/ParallaxImage.qml</file>
@@ -13,6 +12,7 @@
         <file>data/qml/pageStyle/Step_ProgressBarInstall.qml</file>
         <file>data/qml/pageStyle/Step_ToggleMaker.qml</file>
         <file>data/qml/themes/ThemeManager.qml</file>
+        <file>Main.qml</file>
     </qresource>
     <qresource prefix="/json">
         <file>data/json/modData.json</file>
@@ -23,9 +23,9 @@
         <file>data/json/step/4/modStep.json</file>
     </qresource>
     <qresource prefix="/modFile">
-        <file>data/modFiles/dlssg_to_fsr3_amd_is_better.dll</file>
         <file>data/modFiles/ModfileInfoQml.qml</file>
         <file>data/modFiles/version.dll</file>
+        <file>data/modFiles/dlssg_to_fsr3_amd_is_better.dll</file>
     </qresource>
     <qresource prefix="/img">
         <file>res/modInfo/modLogo.png</file>
