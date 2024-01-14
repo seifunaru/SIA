@@ -220,36 +220,6 @@ void StepManager::initModUnpack ()
         emit installationProgressAt60p();
     }
 
-
-    // Check if user wants FSR3 FrameGen
-    if (stepsToInstall > 0)
-    {
-        qDebug() << "INSTAL DIR 2 is: " << installDir2 + "dlssg_to_fsr3_amd_is_better.dll";
-
-        QFile file (installDir2 + "dlssg_to_fsr3_amd_is_better.dll");
-
-        if (!file.exists())
-        {
-            QFile::copy(":/modFile/data/modFiles/dlssg_to_fsr3_amd_is_better.dll", installDir2 + "dlssg_to_fsr3_amd_is_better.dll");
-        }
-
-        file.setFileName(installDir2 + "version.dll");
-        if (!file.exists())
-        {
-            QFile fileTest1 (installDir2 + "nvngx.dll");
-            QFile fileTest2 (installDir2 + "winhttp.dll");
-            QFile fileTest3 (installDir2 + "dbghelp.dll");
-
-            if (!fileTest1.exists() && !fileTest2.exists() && !fileTest3.exists())
-            {
-                QFile::copy(":/modFile/data/modFiles/version.dll" , installDir2 + "version.dll");
-            }
-        }
-
-        emit installationProgressAt80p();
-
-    }
-
     // Sets permissions over qrc generated files so game settings don't get blocked.
     QFile file (installDir2 + "dlssg_to_fsr3_amd_is_better.dll");
     file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);

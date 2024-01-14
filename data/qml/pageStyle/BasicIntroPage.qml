@@ -453,20 +453,10 @@ Item {
         function onMod_install_dir_1_isOk(response)
         {
             if (response === true) {
-                thisModCxx.checkModInstallDir2("AUTO")
-            }
-            else {
-                messageBox1.visible = true
-            }
-        }
-
-        function onMod_install_dir_2_isOk(response)
-        {
-            if (response === true) {
                 stepManager.initModInstall()
             }
             else {
-                messageBox2.visible = true
+                messageBox1.visible = true
             }
         }
 
@@ -476,21 +466,11 @@ Item {
         function onMod_uninstall_dir_1_isOk(response)
         {
             if (response === true) {
-                thisModCxx.checkModUninstallDir2("AUTO")
-            }
-            else {
-                messageBox3.visible = true
-            }
-        }
-
-        function onMod_uninstall_dir_2_isOk(response)
-        {
-            if (response === true) {
                 thisModCxx.getInstallDirs();
                 stepManager.initModUninstall()
             }
             else {
-                messageBox4.visible = true
+                messageBox3.visible = true
             }
         }
 
