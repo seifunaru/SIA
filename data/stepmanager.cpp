@@ -17,6 +17,7 @@ QString installDir2;
 QString modFile0;
 QString modFile1;
 QString modFile2;
+bool is_whole_kit_and_caboodle = false;
 
 StepManager::StepManager(QObject *parent) : QObject(parent)
 {
@@ -129,6 +130,13 @@ void StepManager::initModUnpack ()
     int stepsToInstall = allSteps.toInt(); // sets everything up for installation. This function needs work in order to function properly in other mods. I'm rushing, no time.
 
 
+    // HOTFIX 3.0.1
+    // Warns about all features being set for fine-tune to downgrade Textures, to prevent VRAM crashes.
+    if ((stepsToInstall == 0111) || (stepsToInstall == 1111))
+    {
+        is_whole_kit_and_caboodle = true;
+    }
+
 
     // Check if the user wants to install the FPS or RT Hotfix.
     if (stepsToInstall > 99)
@@ -202,20 +210,44 @@ void StepManager::initModUnpack ()
 
         // Fine tune goes here. Idealy it should be set by using JSON data, but I don't have time to
         // implement that right now, so here is a dirty implemen tation to get the job done.
-        graphicsSettings.setValue("sg.ViewDistanceQuality","2");
-        graphicsSettings.setValue("sg.AntiAliasingQuality","3");
-        graphicsSettings.setValue("sg.ShadowQuality","2");
-        graphicsSettings.setValue("sg.PostProcessQuality","1");
-        graphicsSettings.setValue("sg.TextureQuality","2");
-        graphicsSettings.setValue("sg.EffectsQuality","2");
-        graphicsSettings.setValue("sg.FoliageQuality","2");
-        graphicsSettings.setValue("sg.ShadingQuality","3");
-        graphicsSettings.setValue("sg.VolumetricsQuality","2");
-        graphicsSettings.setValue("sg.SkyQuality","1");
-        graphicsSettings.setValue("sg.PopulationQuality","2");
-        graphicsSettings.setValue("sg.RaytracingQuality","3");
+
+        // HOTFIX 3.0.1
+        //If user has too many VRAM heavy features enabled, sets Fine-Tune-Agr
+        if (is_whole_kit_and_caboodle)
+        {
+            graphicsSettings.setValue("sg.ViewDistanceQuality","2");
+            graphicsSettings.setValue("sg.AntiAliasingQuality","3");
+            graphicsSettings.setValue("sg.ShadowQuality","2");
+            graphicsSettings.setValue("sg.PostProcessQuality","1");
+            graphicsSettings.setValue("sg.TextureQuality","2");
+            graphicsSettings.setValue("sg.EffectsQuality","2");
+            graphicsSettings.setValue("sg.FoliageQuality","2");
+            graphicsSettings.setValue("sg.ShadingQuality","3");
+            graphicsSettings.setValue("sg.VolumetricsQuality","2");
+            graphicsSettings.setValue("sg.SkyQuality","1");
+            graphicsSettings.setValue("sg.PopulationQuality","2");
+            graphicsSettings.setValue("sg.RaytracingQuality","3");
+        }
+
+        else // If not too many VRAM heavy features have been enabled, install Fine-Tune-Lite
+
+        {
+            graphicsSettings.setValue("sg.ViewDistanceQuality","2");
+            graphicsSettings.setValue("sg.AntiAliasingQuality","3");
+            graphicsSettings.setValue("sg.ShadowQuality","2");
+            graphicsSettings.setValue("sg.PostProcessQuality","1");
+            graphicsSettings.setValue("sg.TextureQuality","1");
+            graphicsSettings.setValue("sg.EffectsQuality","2");
+            graphicsSettings.setValue("sg.FoliageQuality","2");
+            graphicsSettings.setValue("sg.ShadingQuality","3");
+            graphicsSettings.setValue("sg.VolumetricsQuality","2");
+            graphicsSettings.setValue("sg.SkyQuality","1");
+            graphicsSettings.setValue("sg.PopulationQuality","2");
+            graphicsSettings.setValue("sg.RaytracingQuality","3");
+        }
 
         graphicsSettings.sync();
+        stepsToInstall -= 10;
 
         emit installationProgressAt60p();
     }
