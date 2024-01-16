@@ -34,9 +34,11 @@ void CustomModFunctions::checkModInstallDir1( QString userInput )
         // Assigns engine path to a qfile.
         QFile file(localAppDataPath);
 
-        // If file doesn't exist, ask the user for a file.
         if (file.exists())
         {
+            // Hotfix, needs cleaning: make sure the file permissions are right.
+            file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);
+
             mod_install_dir_1 = localAppDataPath;
             mod_install_dir_1.chop(10);
 
@@ -45,8 +47,27 @@ void CustomModFunctions::checkModInstallDir1( QString userInput )
 
         } else {
 
-            qDebug() << "INSTALLATION DIR 1 IS NOT VALID. REQUESTING NEW PATH";
-            emit mod_install_dir_1_isOk(false);
+            // HOTFIX 3.0.1
+            // If file doesn't exist, try with EGS standard path.
+
+            localAppDataPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+            localAppDataPath.append("/HogwartsLegacy/Saved/Config/WindowsNoEditor/Engine.ini");
+
+            file.setFileName(localAppDataPath);
+
+            if (file.exists()) {
+                // Hotfix, needs cleaning: make sure the file permissions are right.
+                file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);
+
+                mod_install_dir_1 = localAppDataPath;
+                mod_install_dir_1.chop(10);
+
+                qDebug() << "INSTALLATION DIR 1 AUTHENTICATED. DIR 1 = " + mod_install_dir_1;
+                emit mod_install_dir_1_isOk(true);
+            } else {
+                qDebug() << "INSTALLATION DIR 1 IS NOT VALID. REQUESTING NEW PATH";
+                emit mod_install_dir_1_isOk(false);
+            }
         }
     }
 
@@ -59,6 +80,12 @@ void CustomModFunctions::checkModInstallDir1( QString userInput )
 
         if (userInput.contains("Engine.ini") && file.exists())
         {
+            // Hotfix, needs cleaning: make sure the file permissions are right.
+            file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);
+
+            mod_install_dir_1 = userInput;
+            mod_install_dir_1.chop(10);
+
             qDebug() << "------------------------------------------------------------------ CONTAIN DETECTED";
             emit mod_install_dir_1_isOk(true);
         } else {
@@ -169,9 +196,11 @@ void CustomModFunctions::checkModUninstallDir1( QString userInput )
         // Assigns engine path to a qfile.
         QFile file(localAppDataPath);
 
-        // If file doesn't exist, ask the user for a file.
         if (file.exists())
         {
+            // Hotfix, needs cleaning: make sure the file permissions are right.
+            file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);
+
             mod_install_dir_1 = localAppDataPath;
             mod_install_dir_1.chop(10);
 
@@ -180,28 +209,29 @@ void CustomModFunctions::checkModUninstallDir1( QString userInput )
 
         } else {
 
-            qDebug() << "INSTALLATION DIR 1 IS NOT VALID. REQUESTING NEW PATH";
-            emit mod_uninstall_dir_1_isOk(false);
+            // HOTFIX 3.0.1
+            // If file doesn't exist, try with EGS standard path.
+
+            localAppDataPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+            localAppDataPath.append("/HogwartsLegacy/Saved/Config/WindowsNoEditor/Engine.ini");
+
+            file.setFileName(localAppDataPath);
+
+            if (file.exists()) {
+                // Hotfix, needs cleaning: make sure the file permissions are right.
+                file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);
+
+                mod_install_dir_1 = localAppDataPath;
+                mod_install_dir_1.chop(10);
+
+                qDebug() << "INSTALLATION DIR 1 AUTHENTICATED. DIR 1 = " + mod_install_dir_1;
+                emit mod_uninstall_dir_1_isOk(true);
+            } else {
+                qDebug() << "INSTALLATION DIR 1 IS NOT VALID. REQUESTING NEW PATH";
+                emit mod_uninstall_dir_1_isOk(false);
+            }
         }
     }
-
-    // If it's not set as AUTO, it means the user has provided a custom path, so let's check if it's valid.
-    else
-    {
-        userInput = userInput.remove(0, 8);
-        qDebug() << "Using custom user input path = " + userInput;
-        QFile file(userInput);
-
-        if (userInput.contains("Engine.ini") && file.exists())
-        {
-            qDebug() << "------------------------------------------------------------------ CONTAIN DETECTED";
-            emit mod_uninstall_dir_1_isOk(true);
-        } else {
-            qDebug() << "------------------------------------------------------------------ CONTAIN FAIL";
-            emit mod_uninstall_dir_1_isOk(false);
-        }
-    }
-
 }
 
 // This function tries to find HogwartsLegacy.exe on some "standard" locations before asking for the path to it.
