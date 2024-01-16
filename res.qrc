@@ -3,15 +3,14 @@
         <file>data/qml/appControls/Button_solidSwap.qml</file>
         <file>data/qml/appControls/ProgressBarGradient.qml</file>
         <file>data/qml/appControls/SiaMessageBox.qml</file>
-        <file>data/qml/pageStyle/basicIntroPage.qml</file>
         <file>data/qml/pageStyle/Step_ConfirmInstallation.qml</file>
         <file>data/qml/pageStyle/Step_Credits.qml</file>
         <file>data/qml/pageStyle/Step_ProgressBarInstall.qml</file>
         <file>data/qml/pageStyle/Step_ToggleMaker.qml</file>
         <file>data/qml/themes/ThemeManager.qml</file>
         <file>Main.qml</file>
-        <file>data/qml/appControls/lodImage.qml</file>
-        <file>data/qml/appControls/parallaxImage.qml</file>
+        <file>data/qml/appControls/ParallaxImage.qml</file>
+        <file>data/qml/pageStyle/BasicIntroPage.qml</file>
     </qresource>
     <qresource prefix="/json">
         <file>data/json/modData.json</file>
