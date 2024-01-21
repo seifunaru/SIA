@@ -6,7 +6,7 @@ Item {
         "
 [SystemSettings]
 
-; |||||||||||||||||||||||||||||||||||||||||||||||||| A S C E N D I O   I I I . 0 ||||||||||||||||||||||||||||||||||||||||||||||||||
+; |||||||||||||||||||||||||||||||||||||||||||||||||| A S C E N D I O   I I I . I ||||||||||||||||||||||||||||||||||||||||||||||||||
 ; ||||||||||||||||||||||||||||||||||||||||||||| FPS HOTFIX & ENGINE TWEAKS | BY SEIFU |||||||||||||||||||||||||||||||||||||||||||||
 
 ; || TAGS |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -62,8 +62,8 @@ r.FrustumCullNumWordsPerTask=512					; [!] higher numbers result in a more efici
 ; || TEXTURE STREAMING ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 r.Streaming.LimitPoolSizeToVRAM=1					; pool size is relative to VRAM.
 r.Streaming.AmortizeCPUToGPUCopy=1					; distribuite and prolonge frame load on several frames.
-r.Streaming.NumStaticComponentsProcessedPerFrame=12	; max static components processed per frame.
-r.Streaming.MaxNumTexturesToStreamPerFrame=8		; max textures processed per frame is slightly lower to prevent GPU overload.
+r.Streaming.NumStaticComponentsProcessedPerFrame=18	; max static components processed per frame.
+r.Streaming.MaxNumTexturesToStreamPerFrame=16		; max textures processed per frame is slightly lower to prevent GPU overload.
 r.Streaming.AllowFastForceResident=0				; do not force streamer residents on VRAM.
 r.Streaming.Boost=1.5								; boost texture streamer to prevent potatoing.
 
@@ -92,12 +92,12 @@ r.RayTracing.SkyLight.EnableMaterials=1				; improves quallity and fixes graphic
 r.RayTracing.Reflections.Hybrid=1						; mix ray traced reflections with screen space when appropiate.
 r.RayTracing.Reflections.MaxBounces=1					; just one bounce lacks precission but we can throw more rays.
 r.RayTracing.Reflections.AnyHitMaxRoughness=0.9			; if surface is hyper-reflective, do not use experimental methods.
-r.RayTracing.Reflections.ScreenPercentage=75			; percentage of screen taken into account by reflections
+r.RayTracing.Reflections.ScreenPercentage=45			; percentage of screen taken into account by reflections
 r.RayTracing.Reflections.MaxRayDistance=2500.0f			; max distance before rays stop getting computed.
 r.RayTracing.Reflections.Denoiser=1						; smooths noise for less artifacts
-r.RayTracing.Reflections.Denoiser.Intensity=0.6
+r.RayTracing.Reflections.Denoiser.Intensity=1.0
 r.RayTracing.Reflections.Denoiser.SamplesPerPixel=1
-r.RayTracing.Reflections.Denoiser.Radius=1.2
+r.RayTracing.Reflections.Denoiser.Radius=1.8
 r.RayTracing.Reflections.Filter=1.2						; filters reflections for performance.
 r.RayTracing.Reflections.BoundingRadiusThreshold=0.25	; limits the generation of RT acceleration structures based on radius
 r.RayTracing.Reflections.SamplesPerPixel=1				; reduced amount of rays per pixel for performance boost.
@@ -140,6 +140,5 @@ r.RayTracing.GlobalIllumination.EnableTwoSidedGeometry=0		; no need to take into
 r.RayTracing.GlobalIllumination.FireflySuppression=1			; gets rid of unwanted artifacts
 r.RayTracing.GlobalIllumination.NextEventEstimationSamples=1	; use just one sample on next event estimation.
 r.RayTracing.GlobalIllumination.UseRussianRoulette=1			; stops tracking rays based on an estimation algorythm.
-
 "
 }
