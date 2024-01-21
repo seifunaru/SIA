@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\_Trabaixo\\__trabaixos\\__aplicaciones\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher.csproj": {}
+  },
+  "projects": {
+    "D:\\_Trabaixo\\__trabaixos\\__aplicaciones\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\_Trabaixo\\__trabaixos\\__aplicaciones\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher.csproj",
+        "projectName": "sia-winlauncher",
+        "projectPath": "D:\\_Trabaixo\\__trabaixos\\__aplicaciones\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher.csproj",
+        "packagesPath": "C:\\Users\\Misifu\\.nuget\\packages\\",
+        "outputPath": "D:\\_Trabaixo\\__trabaixos\\__aplicaciones\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Misifu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.1, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.1, 8.0.1]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

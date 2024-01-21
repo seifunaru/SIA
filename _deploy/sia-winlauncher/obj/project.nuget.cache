@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "rUFuvR+MdKr/NNpWRFREbrxMCwGiavgTBQIy7qTPNuqquW9Zl1he9OMhVHNndkhkF4GybK4AypdZkja7pCRXWw==",
+  "success": true,
+  "projectFilePath": "D:\\_Trabaixo\\__trabaixos\\__aplicaciones\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher\\sia-winlauncher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Misifu\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.1\\microsoft.net.illink.tasks.8.0.1.nupkg.sha512",
+    "C:\\Users\\Misifu\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.1\\microsoft.netcore.app.runtime.win-x64.8.0.1.nupkg.sha512",
+    "C:\\Users\\Misifu\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.1.nupkg.sha512",
+    "C:\\Users\\Misifu\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.1\\microsoft.aspnetcore.app.runtime.win-x64.8.0.1.nupkg.sha512",
+    "C:\\Users\\Misifu\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\8.0.1\\microsoft.netcore.app.crossgen2.win-x64.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
