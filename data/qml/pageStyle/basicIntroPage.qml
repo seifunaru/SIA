@@ -254,8 +254,8 @@ Item {
         title: "Find and select your Engine.ini file."
 
         onAccepted: {
-            console.log("SELECTED FILE:", fileDialog1.selectedFile)
-            thisModCxx.checkModUninstallDir1(fileDialog1.selectedFile)
+            console.log("SELECTED FILE:", fileDialog3.selectedFile)
+            thisModCxx.checkModUninstallDir1(fileDialog3.selectedFile)
             // Puedes acceder al archivo seleccionado a través de fileDialog.fileUrls[0]
         }
 
