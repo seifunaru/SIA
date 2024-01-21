@@ -8,7 +8,6 @@
 
 QString mod_install_dir_1;
 QString mod_install_dir_2;
-QString selectedOptions;
 
 CustomModFunctions::CustomModFunctions(QObject *parent) : QObject(parent)
 {
@@ -73,6 +72,7 @@ void CustomModFunctions::checkModInstallDir1( QString userInput )
 
     // If it's not set as AUTO, it means the user has provided a custom path, so let's check if it's valid.
     else
+
     {
         userInput = userInput.remove(0, 8);
         qDebug() << "Using custom user input path = " + userInput;
@@ -86,7 +86,7 @@ void CustomModFunctions::checkModInstallDir1( QString userInput )
             mod_install_dir_1 = userInput;
             mod_install_dir_1.chop(10);
 
-            qDebug() << "------------------------------------------------------------------ CONTAIN DETECTED";
+            qDebug() << "------------------------------------------------------------------ CONTAIN DETECTED: " + mod_install_dir_1;
             emit mod_install_dir_1_isOk(true);
         } else {
             qDebug() << "------------------------------------------------------------------ CONTAIN FAIL";
@@ -230,6 +230,30 @@ void CustomModFunctions::checkModUninstallDir1( QString userInput )
                 qDebug() << "INSTALLATION DIR 1 IS NOT VALID. REQUESTING NEW PATH";
                 emit mod_uninstall_dir_1_isOk(false);
             }
+        }
+    }
+
+    // If it's not set as AUTO, it means the user has provided a custom path, so let's check if it's valid.
+    else
+
+    {
+        userInput = userInput.remove(0, 8);
+        qDebug() << "Using custom user input path = " + userInput;
+        QFile file(userInput);
+
+        if (userInput.contains("Engine.ini") && file.exists())
+        {
+            // Hotfix, needs cleaning: make sure the file permissions are right.
+            file.setPermissions(file.permissions() | QFileDevice::WriteOwner | QFileDevice::WriteUser | QFileDevice::WriteGroup | QFileDevice::WriteOther);
+
+            mod_install_dir_1 = userInput;
+            mod_install_dir_1.chop(10);
+
+            qDebug() << "------------------------------------------------------------------ CONTAIN DETECTED: " + mod_install_dir_1;
+            emit mod_uninstall_dir_1_isOk(true);
+        } else {
+            qDebug() << "------------------------------------------------------------------ CONTAIN FAIL";
+            emit mod_uninstall_dir_1_isOk(false);
         }
     }
 }
