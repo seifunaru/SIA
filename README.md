@@ -1,12 +1,24 @@
-# SIA
-![SIA_Thumbnail](https://i.imgur.com/R1JWhHO.png)
+![image](https://i.imgur.com/AwIixw7.png)
+# SIA | PUBLIC
 ### An user-friendly, clean and professional approach to third party mod/tool installation.
-SIA is a setup application which aims to make the process of installing custom tools or modifications to third party applications (such as videogames) more user-friendly through an assisted installation process specifically designed to "casualize" modding. This tool aims to:
-- Improve the end-user experience with our mods/tools by presenting them in a more "professional" way.
-- Simplify the installation process of said mods/tools by avoiding the copy/pasting or text-editing of files when installing our mod/tools.
-- Make it easier for the end-user to tweak our mods/tools through a step-based installation process.
-- Offer clear installation step explanations (if necessary) to help the user better understand what they are tweaking in each step option.
-- Offer image previews (if necessary) to showcase the end-result of the installed application.
+
+SIA is a setup application which aims to make the process of installing custom tools or modifications to third party applications (such as videogames) more user-friendly through an assisted installation process specifically designed to "casualize" modding. 
+
+This tool aims to:
+-   Improve the end-user experience with mods/tools by presenting them in a more "professional" way.
+-   Simplify the installation process of said mods/tools by avoiding the copy/pasting or text-editing of files when installing them.
+-   Make it easier for the end-user to tweak mods/tools through a step-based installation process.
+-   Offer clear installation step explanations (if necessary) to help the user better understand what they are tweaking in each step option.
+-   Offer image previews (if necessary) to showcase the end-result of the installed application.
+
+SIA is currebtly on BETA state. While a wide range of users around the globe are already using SIA for first party projects, the tool is not yet ready for other creators to use it on their own creations.
+
+![image](https://i.imgur.com/Y3BZX0L.png)
+### SIA | BETA has already been used in a cross-platform environment and is already powering more than 5 successful modding projects on Nexus.
+
+The long-term objective is to refactorize the code so it can easily adapt to different installation situations so hopefully other users can also use SIA as an installer application for their own projects.
+
+While my time to work on SIA is very limited due to my 3D generalist obligations and modding compromises, hopefully SIA's code will get refactorized and cleaned as I get to work on more mods using the application.
 
 ## USE CASES
 SIA is not intended to replace mod management tools.
